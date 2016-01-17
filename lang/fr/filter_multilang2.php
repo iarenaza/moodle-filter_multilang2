@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'filter_multilang2', language 'es'
+ * Strings for component 'filter_multilang2', language 'fr'
  *
  * @package   filter_multilang2
  * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
@@ -25,4 +25,4 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['filtername'] = 'Contenido Multi-Idioma (v2)';
+$string['filtername'] = 'Contenu Multilingue (v2)';

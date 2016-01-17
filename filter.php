@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Multi-language content filter, with simplified syntax.
+ *
  * @package    filter
  * @subpackage multilang2
  * @copyright  Gaetan Frenoy <gaetan@frenoy.net>
@@ -33,12 +34,13 @@ defined('MOODLE_INTERNAL') || die();
  *    - look for multilang blocks in the text.
  *    - if there exists texts in the currently active language, print them.
  *    - else, if there exists texts in the current parent language, print them.
- *    - else, don't print any text inside the lang block (this is a change from previous filter versions behaviour!!!!)
+ *    - else, don't print any text inside the lang block (this is a change
+ *      from previous filter versions behaviour!!!!)
  *
  *  Please note that English texts are not used as default anymore!
- * 
+ *
  *  This version is based on original multilang filter by Gaetan Frenoy, Eloy and skodak.
- * 
+ *
  *  Following new syntax is not compatible with old one:
  *    {mlang XX}one lang{mlang}Some common text for any language.{mlang YY}another language{mlang}
  */
@@ -47,16 +49,26 @@ class filter_multilang2 extends moodle_text_filter {
     protected $search;
     protected $callback;
 
+    /*
+     * This function filters the received text based on the language
+     * tags embedded in the text, and the current user language.
+     *
+     * @param string $text The text to filter.
+     * @param array $options The filter options.
+     * @return string The filtered text for this multilang block.
+     */
     public function filter($text, array $options = array()) {
         global $CFG;
-        
+
         if (empty($text) or is_numeric($text)) {
             return $text;
         }
 
         $this->search = '/{mlang\s+([a-z0-9_-]+)\s*}(.*?){\s*mlang\s*}/is';
-        $this->callback = function ($langblock) { return filter_multilang2::replace_callback($langblock); };
-        
+        $this->callback = function ($langblock) {
+            return filter_multilang2::replace_callback($langblock);
+        };
+
         $result = preg_replace_callback($this->search, $this->callback, $text);
 
         if (is_null($result)) {
@@ -66,6 +78,16 @@ class filter_multilang2 extends moodle_text_filter {
         }
     }
 
+    /**
+     * This function filters the current block of multilang tag. If the tag language
+     * matches the user current langauge (of its parent language), it returns the
+     * text of the block. Otherwise it returns an empty string.
+     *
+     * @param array langblock An array containing the matching captured pieces of the
+     *                        regular expression. They are the language of the tag,
+     *                        and the text associated with that language.
+     * @return string 
+     */
     static protected function replace_callback($langblock) {
         global $CFG;
         static $parentcache;
@@ -73,6 +95,7 @@ class filter_multilang2 extends moodle_text_filter {
         if (!isset($parentcache)) {
             $parentcache = array();
         }
+
         $mylang = current_language();
         if (!array_key_exists($mylang, $parentcache)) {
             $parentlang = get_parent_language($mylang);

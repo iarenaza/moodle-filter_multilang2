@@ -1,5 +1,6 @@
-To Install it:
+To Install it manually:
 
+    - Unzip the plugin in the moodle .../filter/ directory.
     - Enable if from "Administration/Filters".
 
 To Use it:
@@ -64,4 +65,4 @@ One example in action:
 
 Saludos.
 Iñaki.
-2015.04.22
+2016.01.16

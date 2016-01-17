@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -23,5 +22,7 @@
  *            2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined('MOODLE_INTERNAL') || die();
 
 $string['filtername'] = 'Multi-Language Content (v2)';
