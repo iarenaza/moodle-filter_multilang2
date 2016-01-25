@@ -86,7 +86,7 @@ class filter_multilang2 extends moodle_text_filter {
      * @param array langblock An array containing the matching captured pieces of the
      *                        regular expression. They are the language of the tag,
      *                        and the text associated with that language.
-     * @return string 
+     * @return string
      */
     static protected function replace_callback($langblock) {
         global $CFG;
