@@ -17,8 +17,7 @@
 /**
  * Multi-language content filter, with simplified syntax.
  *
- * @package    filter
- * @subpackage multilang2
+ * @package    filter_multilang2
  * @copyright  Gaetan Frenoy <gaetan@frenoy.net>
  * @copyright  2004 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
@@ -27,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-/*
+/**
  *  Given multilinguage text, return relevant text according to
  *  current language:
  *
@@ -46,10 +45,19 @@ defined('MOODLE_INTERNAL') || die();
  */
 class filter_multilang2 extends moodle_text_filter {
 
+    /**
+     * @var string $search The regular expression used to match the language blocks.
+     */
     protected $search;
+
+    /**
+     * @var callable $callback The callback used where a language
+     *                         block is matched, that extracts the
+     *                         filtered text from the block.
+     */
     protected $callback;
 
-    /*
+    /**
      * This function filters the received text based on the language
      * tags embedded in the text, and the current user language.
      *
@@ -83,9 +91,9 @@ class filter_multilang2 extends moodle_text_filter {
      * matches the user current langauge (of its parent language), it returns the
      * text of the block. Otherwise it returns an empty string.
      *
-     * @param array langblock An array containing the matching captured pieces of the
-     *                        regular expression. They are the language of the tag,
-     *                        and the text associated with that language.
+     * @param array $langblock An array containing the matching captured pieces of the
+     *                         regular expression. They are the language of the tag,
+     *                         and the text associated with that language.
      * @return string
      */
     static protected function replace_callback($langblock) {
