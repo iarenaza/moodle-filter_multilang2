@@ -68,7 +68,7 @@ class filter_multilang2 extends moodle_text_filter {
     public function filter($text, array $options = array()) {
         global $CFG;
 
-        if (empty($text) or is_numeric($text)) {
+        if (stripos($text, 'mlang') === false) {
             return $text;
         }
 
