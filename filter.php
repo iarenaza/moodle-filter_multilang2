@@ -46,18 +46,6 @@ defined('MOODLE_INTERNAL') || die();
 class filter_multilang2 extends moodle_text_filter {
 
     /**
-     * @var string $search The regular expression used to match the language blocks.
-     */
-    protected $search;
-
-    /**
-     * @var callable $callback The callback used where a language
-     *                         block is matched, that extracts the
-     *                         filtered text from the block.
-     */
-    protected $callback;
-
-    /**
      * This function filters the received text based on the language
      * tags embedded in the text, and the current user language.
      *
@@ -72,12 +60,8 @@ class filter_multilang2 extends moodle_text_filter {
             return $text;
         }
 
-        $this->search = '/{mlang\s+([a-z0-9_-]+)\s*}(.*?){\s*mlang\s*}/is';
-        $this->callback = function ($langblock) {
-            return filter_multilang2::replace_callback($langblock);
-        };
-
-        $result = preg_replace_callback($this->search, $this->callback, $text);
+        $search = '/{mlang\s+([a-z0-9_-]+)\s*}(.*?){\s*mlang\s*}/is';
+        $result = preg_replace_callback($search, 'filter_multilang2::replace_callback', $text);
 
         if (is_null($result)) {
             return $text; // Error during regex processing, keep original text.
