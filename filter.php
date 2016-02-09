@@ -90,16 +90,15 @@ class filter_multilang2 extends moodle_text_filter {
 
         $mylang = current_language();
         if (!array_key_exists($mylang, $parentcache)) {
-            $parentlang = get_parent_language($mylang);
-            $parentcache[$mylang] = $parentlang;
+            $parentlangs = get_string_manager()->get_language_dependencies($mylang);
+            $parentcache[$mylang] = $parentlangs;
         } else {
-            $parentlang = $parentcache[$mylang];
-
+            $parentlangs = $parentcache[$mylang];
         }
 
         $blocklang = trim(core_text::strtolower($langblock[1]));
         $blocktext = $langblock[2];
-        if (($mylang === $blocklang) || ($parentlang === $blocklang)) {
+        if (($blocklang == $mylang) || in_array($blocklang, $parentlangs)) {
             return $blocktext;
         }
         return '';
