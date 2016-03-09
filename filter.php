@@ -54,7 +54,6 @@ class filter_multilang2 extends moodle_text_filter {
      * @return string The filtered text for this multilang block.
      */
     public function filter($text, array $options = array()) {
-        global $CFG;
 
         if (stripos($text, 'mlang') === false) {
             return $text;
@@ -81,7 +80,6 @@ class filter_multilang2 extends moodle_text_filter {
      * @return string
      */
     static protected function replace_callback($langblock) {
-        global $CFG;
         static $parentcache;
 
         if (!isset($parentcache)) {
