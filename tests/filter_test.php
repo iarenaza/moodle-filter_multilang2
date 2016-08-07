@@ -126,6 +126,16 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'before' => 'Before {mlang non-existent-language}Some content{mlang} After',
                 'after'  => 'Before  After',
             ),
+            array (
+                'filterwithlang' => 'en_us',
+                'before' => 'Before {mlang en_us}Some content{mlang} After',
+                'after'  => 'Before Some content After',
+            ),
+            array (
+                'filterwithlang' => 'en_us',
+                'before' => 'Before {mlang en-us}Some content{mlang} After',
+                'after'  => 'Before Some content After',
+            ),
         );
 
 

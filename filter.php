@@ -94,7 +94,11 @@ class filter_multilang2 extends moodle_text_filter {
             $parentlangs = $parentcache[$mylang];
         }
 
-        $blocklang = trim(core_text::strtolower($langblock[1]));
+        /* Normalize languages. We can use strtolower instead of core_text::strtolower()
+         * as language short names are ASCII only, and strtolower is much faster. We also
+         * don't need trim(), as the regex capture doesn't include trailing/leading whitespace 
+         */
+        $blocklang = str_replace('-', '_', strtolower($langblock[1]));
         $blocktext = $langblock[2];
         if (($blocklang == $mylang) || in_array($blocklang, $parentlangs)) {
             return $blocktext;
