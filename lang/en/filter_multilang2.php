@@ -26,3 +26,4 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['filtername'] = 'Multi-Language Content (v2)';
+$string['pluginname'] = 'Multi-Language Content (v2) Filter';

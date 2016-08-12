@@ -26,3 +26,4 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['filtername'] = 'Eduki eleanitza (v2)';
+$string['pluginname'] = 'Eduki eleanitza (v2) Iragazkia';
