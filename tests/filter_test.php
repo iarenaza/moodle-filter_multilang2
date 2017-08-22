@@ -15,8 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Tests for filter_multilang2. Based on unit tests from
- * filter_text, by Damyon Wise.
+ * Tests for filter_multilang2. 
+ *
+ * Based on unit tests from filter_text, by Damyon Wise.
  *
  * @package    filter_multilang2
  * @category   test
