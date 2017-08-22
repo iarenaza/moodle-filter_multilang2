@@ -36,15 +36,21 @@ require_once($CFG->dirroot . '/filter/multilang2/filter.php');
  * Test that the filter produces the right content depending
  * on the current browsing language.
  *
+ * @package    filter_multilang2
+ * @category   test
+ * @copyright  2014 Damyon Wiese
+ * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class filter_multilang2_testcase extends advanced_testcase {
 
+    /** @var object The filter plugin object to perform the tests on */
     protected $filter;
 
     /**
      * Setup the test framework
      *
-     * @returns void
+     * @return void
      */
     protected function setUp() {
         parent::setUp();
@@ -53,11 +59,11 @@ class filter_multilang2_testcase extends advanced_testcase {
     }
 
     /**
+     * Perform the actual tests, once the unit test is set up.
      *
-     *
-     * @returns void
+     * @return void
      */
-    function test_filter_multilang2() {
+    public function test_filter_multilang2() {
         global $CFG;
 
         $tests = array(
@@ -98,13 +104,13 @@ class filter_multilang2_testcase extends advanced_testcase {
             ),
             array (
                 'filterwithlang' => 'eu',
-                'before' => 'Non-filtered {begin}{mlang es}Algo en español{mlang}{mlang eu}Zerbait euskeraz{mlang}Non-filtered{end}',
-                'after'  => 'Non-filtered {begin}Zerbait euskerazNon-filtered{end}',
+                'before' => 'Non-filtered {begin}{mlang es}En español{mlang}{mlang eu}Euskeraz{mlang}Non-filtered{end}',
+                'after'  => 'Non-filtered {begin}EuskerazNon-filtered{end}',
             ),
             array (
                 'filterwithlang' => 'eu',
-                'before' => 'Non-filtered {begin}{mlang es}Algo en español{mlang}{mlang eu}Zerbait euskeraz{mlang}Non-filtered{end}',
-                'after'  => 'Non-filtered {begin}Zerbait euskerazNon-filtered{end}',
+                'before' => 'Non-filtered {begin}{mlang es}En español{mlang}{mlang eu}Euskeraz{mlang}Non-filtered{end}',
+                'after'  => 'Non-filtered {begin}EuskerazNon-filtered{end}',
             ),
             array (
                 'filterwithlang' => 'es',
@@ -137,7 +143,6 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'after'  => 'Before Some content After',
             ),
         );
-
 
         // As we need to switch languages to test the filter, store the current
         // language to restore it at the end the tests.

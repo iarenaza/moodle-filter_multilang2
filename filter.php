@@ -27,8 +27,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- *  Given multilinguage text, return relevant text according to
- *  current language:
+ * Given multilinguage text, return relevant text according to current language.
+ *
+ * The way the filter works is as follows:
  *
  *    - look for multilang blocks in the text.
  *    - if there exists texts in the currently active language, print them.
@@ -42,6 +43,10 @@ defined('MOODLE_INTERNAL') || die();
  *
  *  Following new syntax is not compatible with old one:
  *    {mlang XX}one lang{mlang}Some common text for any language.{mlang YY}another language{mlang}
+ *
+ * @package    filter_multilang2
+ * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class filter_multilang2 extends moodle_text_filter {
 
@@ -96,7 +101,7 @@ class filter_multilang2 extends moodle_text_filter {
 
         /* Normalize languages. We can use strtolower instead of core_text::strtolower()
          * as language short names are ASCII only, and strtolower is much faster. We also
-         * don't need trim(), as the regex capture doesn't include trailing/leading whitespace 
+         * don't need trim(), as the regex capture doesn't include trailing/leading whitespace
          */
         $blocklang = str_replace('-', '_', strtolower($langblock[1]));
         $blocktext = $langblock[2];
