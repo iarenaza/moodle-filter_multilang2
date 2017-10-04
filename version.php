@@ -17,7 +17,8 @@
 /**
  * Version details
  *
- * @package    filter_multilang2
+ * @package    core_filters
+ * @subpackage multilang2
  * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
  *             2015 onwards Iñaki Arenaza & Mondragon Unibertsitata
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

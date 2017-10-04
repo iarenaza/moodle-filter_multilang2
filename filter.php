@@ -17,7 +17,8 @@
 /**
  * Multi-language content filter, with simplified syntax.
  *
- * @package    filter_multilang2
+ * @package    core_filters
+ * @subpackage multilang2
  * @copyright  Gaetan Frenoy <gaetan@frenoy.net>
  * @copyright  2004 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
@@ -44,7 +45,8 @@ defined('MOODLE_INTERNAL') || die();
  *  Following new syntax is not compatible with old one:
  *    {mlang XX}one lang{mlang}Some common text for any language.{mlang YY}another language{mlang}
  *
- * @package    filter_multilang2
+ * @package    core_filters
+ * @subpackage multilang2
  * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

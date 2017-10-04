@@ -19,7 +19,8 @@
  *
  * Based on unit tests from filter_text, by Damyon Wise.
  *
- * @package    filter_multilang2
+ * @package    core_filters
+ * @subpackage multilang2
  * @category   test
  * @copyright  2014 Damyon Wiese
  * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea
@@ -37,7 +38,8 @@ require_once($CFG->dirroot . '/filter/multilang2/filter.php');
  * Test that the filter produces the right content depending
  * on the current browsing language.
  *
- * @package    filter_multilang2
+ * @package    core_filters
+ * @subpackage multilang2
  * @category   test
  * @copyright  2014 Damyon Wiese
  * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea

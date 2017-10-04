@@ -17,10 +17,11 @@
 /**
  * Strings for component 'filter_multilang2', language 'es'
  *
- * @package   filter_multilang2
- * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
- *            2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    core_filters
+ * @subpackage multilang2
+ * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ *             2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
