@@ -17,8 +17,7 @@
 /**
  * Strings for component 'filter_multilang2', language 'fr'
  *
- * @package    core_filters
- * @subpackage multilang2
+ * @package    filter_multilang2
  * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
  *             2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
