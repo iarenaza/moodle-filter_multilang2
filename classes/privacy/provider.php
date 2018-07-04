@@ -15,16 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'filter_multilang2', language 'en'
+ * Privacy Subsystem implementation for filter_multilang2.
  *
  * @package    filter_multilang2
- * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
- *             2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>,
+ *             2018 Iñaki Arenaza <iarenaza@escomposlinux.org>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_multilang2\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$string['filtername'] = 'Multi-Language Content (v2)';
-$string['pluginname'] = 'Multi-Language Content (v2) Filter';
-$string['privacy:metadata'] = 'The Multi-Language Content (v2) Filter plugin does not store any personal data.';
+/**
+ * Privacy Subsystem for filter_multilang2 implementing null_provider.
+ *
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>,
+ *             2018 Iñaki Arenaza <iarenaza@escomposlinux.org>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
