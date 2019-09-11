@@ -143,6 +143,32 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'before' => 'Before {mlang en-us}Some content{mlang} After',
                 'after'  => 'Before Some content After',
             ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => 'Before {mlang fr}French{mlang}{mlang it}Italian{mlang}{mlang de}Deutsch{mlang} After',
+                'after'  => 'Before  After',
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => 'Before {mlang fr}Frnçais{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang other}България{mlang} Middle {mlang other}България{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang fr}Français{mlang} After',
+
+                'after' => 'Before България Middle България After',
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '{mlang de}Deutsch {mlang}no other language declared',
+                'after' => 'no other language declared',
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '{mlang other}Other language{mlang}',
+                'after' => 'Other language',
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '{mlang other}Other language{mlang} Middle {mlang de}Deutsch{mlang}{mlang other}Other language{mlang}',
+                'after' => 'Other language Middle Other language',
+            ),
         );
 
         // As we need to switch languages to test the filter, store the current

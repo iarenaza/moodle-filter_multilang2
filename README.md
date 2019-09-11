@@ -12,7 +12,7 @@
     {mlang YY}content in language YY{mlang}
   </pre>
   where **XX** and **YY** are the Moodle short names for the language packs
-  (i.e., en, fr, de, etc.)      
+  (i.e., en, fr, de, etc.) or 'other'.
 - Test it (by changing your browsing language in Moodle).
 
 # How it works #
@@ -20,7 +20,7 @@
 - For each "lang block":
   - If there are texts in the currently active language, print them.
   - Else, if there exists texts in the current parent language, print them.
-  - Else, don't print any text inside the lang block.
+  - Else, as fallback, print the text with language 'other' if such one is set.
 - Text outside of "lang blocks" will always be shown.
 
 ## Definition of "lang block" ##
