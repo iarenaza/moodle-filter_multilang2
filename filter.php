@@ -46,6 +46,11 @@ defined('MOODLE_INTERNAL') || die();
  *  Following new syntax is not compatible with old one:
  *    {mlang XX}one lang{mlang}Some common text for any language.{mlang YY}another language{mlang}
  *
+ *  2019.11.19 A new enhanced syntax to be able to specify multiple languages
+ *  for a single tag is now available. Just specify the list of the languages
+ *  separated by commas:
+ *    {mlang XX,YY,ZZ}Text displayed if current lang is XX, YY or ZZ, or one of their parent laguages.{mlang}
+ *
  * @package    filter_multilang2
  * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -57,7 +62,8 @@ class filter_multilang2 extends moodle_text_filter {
 
     /**
      * This function filters the received text based on the language
-     * tags embedded in the text, and the current user language or 'other', if present.
+     * tags embedded in the text, and the current user language or
+     * 'other', if present.
      *
      * @param string $text The text to filter.
      * @param array $options The filter options.
@@ -79,7 +85,15 @@ class filter_multilang2 extends moodle_text_filter {
             self::$parentcache[$this->lang] = $parentlangs;
         }
 
-        $search = '/{mlang\s+([a-z0-9_-]+)\s*}(.*?){\s*mlang\s*}/is';
+        $search = '/{\s*mlang\s+(                               # Look for the leading {mlang
+                                    (?:[a-z0-9_-]+)             # At least one language must be present
+                                                                # (but dont capture it individually).
+                                    (?:\s*,\s*[a-z0-9_-]+\s*)*  # More can follow, separated by commas
+                                                                # (again dont capture them individually).
+                                )\s*}                           # Capture the language list as a single capture.
+                   (.*?)                                        # Now capture the text to be filtered.
+                   {\s*mlang\s*}                                # And look for the trailing {mlang}.
+                   /isx';
         $result = preg_replace_callback($search, [$this, 'replace_callback'], $text);
 
         if (is_null($result)) {
@@ -90,29 +104,41 @@ class filter_multilang2 extends moodle_text_filter {
     }
 
     /**
-     * This function filters the current block of multilang tag. If the tag language
-     * matches the user current langauge (or its parent languages), it returns the
-     * text of the block. Else if the tag language matches 'other', it returns the
-     * text of the block. Otherwise it returns an empty string.
+     * This function filters the current block of multilang tag. If
+     * any of the tag languages (or their parent languages) match the
+     * user current language, it returns the text of the block. Else
+     * if the tag languages contain 'other', it returns the text of the
+     * block. Otherwise it returns an empty string.
      *
      * @param array $langblock An array containing the matching captured pieces of the
-     *                         regular expression. They are the language of the tag,
-     *                         and the text associated with that language.
+     *                         regular expression. They are the languages of the tag,
+     *                         and the text associated with those languages.
      * @return string
      */
     protected function replace_callback($langblock) {
-        /* Normalize languages. We can use strtolower instead of core_text::strtolower()
-         * as language short names are ASCII only, and strtolower is much faster. We also
-         * don't need trim(), as the regex capture doesn't include trailing/leading whitespace
+
+        /* Normalize languages. We can use strtolower instead of
+         * core_text::strtolower() as language short names are ASCII
+         * only, and strtolower is much faster. We have to remove the
+         * white space between language names to be able to match them
+         * to official langguage names.
          */
-        $blocklang = str_replace('-', '_', strtolower($langblock[1]));
+        $blocklangs = explode(',', str_replace(' ', '', str_replace('-', '_', strtolower($langblock[1]))));
         $blocktext = $langblock[2];
         $parentlangs = self::$parentcache[$this->lang];
-        if (($blocklang == $this->lang) || in_array($blocklang, $parentlangs)) {
-            return $blocktext;
-        } elseif ($blocklang == 'other') {
-            return $blocktext;
+        foreach ($blocklangs as $blocklang) {
+            /* We don't check for empty values of $lang as they simply don't
+             * match any language and they don't produce any errors or warnings.
+             */
+            if (($blocklang === $this->lang) || in_array($blocklang, $parentlangs)) {
+                return $blocktext;
+            }
         }
-        return '';
+
+        if (in_array('other', $blocklangs)) {
+            return $blocktext;
+        } else {
+            return '';
+        }
     }
 }

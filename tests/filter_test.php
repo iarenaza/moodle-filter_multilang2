@@ -109,14 +109,29 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'after'  => 'Non-filtered {begin}EuskerazNon-filtered{end}',
             ),
             array (
-                'filterwithlang' => 'eu',
-                'before' => 'Non-filtered {begin}{mlang es}En español{mlang}{mlang eu}Euskeraz{mlang}Non-filtered{end}',
-                'after'  => 'Non-filtered {begin}EuskerazNon-filtered{end}',
-            ),
-            array (
                 'filterwithlang' => 'es',
                 'before' => '{mlang}Bad filter syntax{mlang}',
                 'after'  => '{mlang}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang-es}Bad filter syntax{mlang}',
+                'after'  => '{mlang-es}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang_es}Bad filter syntax{mlang}',
+                'after'  => '{mlang_es}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang _es}Este texto está en español{mlang}',
+                'after'  => '',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang -es}Este texto está en español{mlang}',
+                'after'  => '',
             ),
             array (
                 'filterwithlang' => 'es',
@@ -151,7 +166,6 @@ class filter_multilang2_testcase extends advanced_testcase {
             array (
                 'filterwithlang' => 'en',
                 'before' => 'Before {mlang fr}Frnçais{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang other}България{mlang} Middle {mlang other}България{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang fr}Français{mlang} After',
-
                 'after' => 'Before България Middle България After',
             ),
             array (
@@ -168,6 +182,86 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'filterwithlang' => 'en',
                 'before' => '{mlang other}Other language{mlang} Middle {mlang de}Deutsch{mlang}{mlang other}Other language{mlang}',
                 'after' => 'Other language Middle Other language',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang en,fr,es}Todo el texto está en español{mlang}',
+                'after'  => 'Todo el texto está en español',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang   en   ,      fr,es    }Todo el texto está en español{mlang}',
+                'after'  => 'Todo el texto está en español',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mLaNg   eN   ,      FR,Es    }Todo el texto está en español{mlang}',
+                'after'  => 'Todo el texto está en español',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang   en  ,  ,  ,,,     fr,es,,     ,}Bad filter syntax{mlang}',
+                'after'  => '{mlang   en  ,  ,  ,,,     fr,es,,     ,}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang   en   ,}Bad filter syntax{mlang}',
+                'after'  => '{mlang   en   ,}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang   en,     }Bad filter syntax{mlang}',
+                'after'  => '{mlang   en,     }Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang en  ,   }Bad filter syntax{mlang}',
+                'after'  => '{mlang en  ,   }Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang   en,   ,  }Bad filter syntax{mlang}',
+                'after'  => '{mlang   en,   ,  }Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang en,,es}Bad filter syntax{mlang}',
+                'after'  => '{mlang en,,es}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before'  => '{mlang en  ,,  es  }Bad filter syntax{mlang}',
+                'after'  => '{mlang en  ,,  es  }Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before'  => '{mlang en , , es}Bad filter syntax{mlang}',
+                'after'  => '{mlang en , , es}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before'  => '{mlang en , , es , }Bad filter syntax{mlang}',
+                'after'   => '{mlang en , , es , }Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang en,es,}Bad filter syntax{mlang}',
+                'after'  => '{mlang en,es,}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang en , es , }Bad filter syntax{mlang}',
+                'after'  => '{mlang en , es , }Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang,es}Bad filter syntax{mlang}',
+                'after'  => '{mlang,es}Bad filter syntax{mlang}',
+            ),
+            array (
+                'filterwithlang' => 'es',
+                'before' => '{mlang ,es}Bad filter syntax{mlang}',
+                'after'  => '{mlang ,es}Bad filter syntax{mlang}',
             ),
         );
 
