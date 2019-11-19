@@ -52,6 +52,9 @@ defined('MOODLE_INTERNAL') || die();
  */
 class filter_multilang2 extends moodle_text_filter {
 
+    protected static $parentcache;
+    protected $lang;
+
     /**
      * This function filters the received text based on the language
      * tags embedded in the text, and the current user language or 'other', if present.
@@ -68,11 +71,18 @@ class filter_multilang2 extends moodle_text_filter {
 
         $search = '/{mlang\s+([a-z0-9_-]+)\s*}(.*?){\s*mlang\s*}/is';
         $result = preg_replace_callback($search, [$this, 'replace_callback'], $text);
+        if (!isset(self::$parentcache)) {
+            self::$parentcache = array();
+        }
 
         if ($this->replacedone == false) {
             // Nothing has been replaced, because the current language hasn't been covered.
             // Return the entry with 'other', if any is present.
             $result = preg_replace_callback($search, [$this, 'replace_callback_other'], $text);
+        $this->lang = current_language();
+        if (!array_key_exists($this->lang, self::$parentcache)) {
+            $parentlangs = get_string_manager()->get_language_dependencies($this->lang);
+            self::$parentcache[$this->lang] = $parentlangs;
         }
 
         if (is_null($result)) {
@@ -93,20 +103,6 @@ class filter_multilang2 extends moodle_text_filter {
      * @return string
      */
     protected function replace_callback($langblock) {
-        static $parentcache;
-
-        if (!isset($parentcache)) {
-            $parentcache = array();
-        }
-
-        $mylang = current_language();
-        if (!array_key_exists($mylang, $parentcache)) {
-            $parentlangs = get_string_manager()->get_language_dependencies($mylang);
-            $parentcache[$mylang] = $parentlangs;
-        } else {
-            $parentlangs = $parentcache[$mylang];
-        }
-
         /* Normalize languages. We can use strtolower instead of core_text::strtolower()
          * as language short names are ASCII only, and strtolower is much faster. We also
          * don't need trim(), as the regex capture doesn't include trailing/leading whitespace
