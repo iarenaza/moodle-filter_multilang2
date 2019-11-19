@@ -10,9 +10,10 @@
   <pre>
     {mlang XX}content in language XX{mlang}
     {mlang YY}content in language YY{mlang}
+    {mlang other}content for other languages{mlang}
   </pre>
   where **XX** and **YY** are the Moodle short names for the language packs
-  (i.e., en, fr, de, etc.)      
+  (i.e., en, fr, de, etc.) or 'other'.
 - Test it (by changing your browsing language in Moodle).
 
 # How it works #
@@ -20,7 +21,7 @@
 - For each "lang block":
   - If there are texts in the currently active language, print them.
   - Else, if there exists texts in the current parent language, print them.
-  - Else, don't print any text inside the lang block.
+  - Else, as fallback, print the text with language 'other' if such one is set.
 - Text outside of "lang blocks" will always be shown.
 
 ## Definition of "lang block" ##
@@ -49,11 +50,11 @@ Fourth paragraph of text. Fourth paragraph of text. Fourth paragraph of text.
 
 - This text:
   <pre>
-  {mlang en}Hello!{mlang}{mlang es}¡Hola!{mlang}
+  {mlang other}Hello!{mlang}{mlang es}¡Hola!{mlang}
   This text is common for all languages because it's outside of all lang blocks.
-  {mlang en}Bye!{mlang}{mlang it}Ciao!{mlang}
+  {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}
   </pre>
-- If the current language is English, it will print:
+- If the current language is any language except Spanish and Italian, it will print:
   <pre>
   Hello!
   This text is common for all languages because it's outside of all lang blocks.
@@ -70,4 +71,4 @@ Fourth paragraph of text. Fourth paragraph of text. Fourth paragraph of text.
   This text is common for all languages because it's outside of all lang blocks.
   Ciao!
   </pre>
- Notice the leading 'Hello!' / '¡Hola!' is not printed.
+  Notice the leading 'Hello!' / '¡Hola!' is not printed.
