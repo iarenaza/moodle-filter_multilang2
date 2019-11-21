@@ -184,6 +184,33 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'after' => 'Other language Middle Other language',
             ),
             array (
+                'filterwithlang' => 'fr',
+                'before' => '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
+                             This text is common for all languages because it is outside of all lang blocks.
+                             {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
+                'after'  => 'Hello!
+                             This text is common for all languages because it is outside of all lang blocks.
+                             Bye!',
+            ),
+            array (
+                'filterwithlang' => 'es_mx',
+                'before' => '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
+                             This text is common for all languages because it is outside of all lang blocks.
+                             {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
+                'after'  => '¡Hola!
+                             This text is common for all languages because it is outside of all lang blocks.
+                             ',
+            ),
+            array (
+                'filterwithlang' => 'it',
+                'before' => '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
+                             This text is common for all languages because it is outside of all lang blocks.
+                             {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
+                'after'  => '
+                             This text is common for all languages because it is outside of all lang blocks.
+                             Ciao!',
+            ),
+            array (
                 'filterwithlang' => 'es',
                 'before' => '{mlang en,fr,es}Todo el texto está en español{mlang}',
                 'after'  => 'Todo el texto está en español',

@@ -76,13 +76,14 @@ class filter_multilang2 extends moodle_text_filter {
         }
 
         if (!isset(self::$parentcache)) {
-            self::$parentcache = array();
+            self::$parentcache['other'] = array();
         }
 
-        $this->lang = current_language();
-        if (!array_key_exists($this->lang, self::$parentcache)) {
-            $parentlangs = get_string_manager()->get_language_dependencies($this->lang);
-            self::$parentcache[$this->lang] = $parentlangs;
+        $this->replacementdone = false;
+        $currlang = current_language();
+        if (!array_key_exists($currlang, self::$parentcache)) {
+            $parentlangs = get_string_manager()->get_language_dependencies($currlang);
+            self::$parentcache[$currlang] = $parentlangs;
         }
 
         $search = '/{\s*mlang\s+(                               # Look for the leading {mlang
@@ -94,51 +95,65 @@ class filter_multilang2 extends moodle_text_filter {
                    (.*?)                                        # Now capture the text to be filtered.
                    {\s*mlang\s*}                                # And look for the trailing {mlang}.
                    /isx';
-        $result = preg_replace_callback($search, [$this, 'replace_callback'], $text);
 
+        $replacelang = $currlang;
+        $result = preg_replace_callback($search,
+                                        function ($matches) use ($replacelang) {
+                                            return $this->replace_callback($replacelang, $matches);
+                                        },
+                                        $text);
         if (is_null($result)) {
             return $text; // Error during regex processing, keep original text.
-        } else {
+        }
+        if ($this->replacementdone) {
             return $result;
         }
+
+        $replacelang = 'other';
+        $result = preg_replace_callback($search,
+                                        function ($matches) use ($replacelang) {
+                                            return $this->replace_callback($replacelang, $matches);
+                                        },
+                                        $text);
+        if (is_null($result)) {
+            return $text;
+        }
+        return $result;
     }
 
     /**
      * This function filters the current block of multilang tag. If
      * any of the tag languages (or their parent languages) match the
-     * user current language, it returns the text of the block. Else
-     * if the tag languages contain 'other', it returns the text of the
+     * specified filtering language, it returns the text of the
      * block. Otherwise it returns an empty string.
      *
+     * @param string $replacelang A string that specifies the language used to
+     *                            filter the matches.
      * @param array $langblock An array containing the matching captured pieces of the
      *                         regular expression. They are the languages of the tag,
      *                         and the text associated with those languages.
      * @return string
      */
-    protected function replace_callback($langblock) {
-
+    protected function replace_callback($replacelang, $langblock) {
         /* Normalize languages. We can use strtolower instead of
          * core_text::strtolower() as language short names are ASCII
          * only, and strtolower is much faster. We have to remove the
          * white space between language names to be able to match them
-         * to official langguage names.
+         * to official language names.
          */
         $blocklangs = explode(',', str_replace(' ', '', str_replace('-', '_', strtolower($langblock[1]))));
         $blocktext = $langblock[2];
-        $parentlangs = self::$parentcache[$this->lang];
+        $parentlangs = self::$parentcache[$replacelang];
         foreach ($blocklangs as $blocklang) {
-            /* We don't check for empty values of $lang as they simply don't
+            /* We don't check for empty values of $blocklang as they simply don't
              * match any language and they don't produce any errors or warnings.
              */
-            if (($blocklang === $this->lang) || in_array($blocklang, $parentlangs)) {
+            if (($blocklang === $replacelang) || in_array($blocklang, $parentlangs)) {
+                $this->replacementdone = true;
                 return $blocktext;
             }
         }
 
-        if (in_array('other', $blocklangs)) {
-            return $blocktext;
-        } else {
-            return '';
-        }
+        return '';
     }
 }
