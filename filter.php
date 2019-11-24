@@ -57,7 +57,15 @@ defined('MOODLE_INTERNAL') || die();
  */
 class filter_multilang2 extends moodle_text_filter {
 
+    /**
+     * @var array Cache of parent language(s) of a given language
+     */
     protected static $parentcache;
+
+    /**
+     * @var string The langauge we are currently using to filter multilang blocks.
+     *             It can be either the user current language, or the language 'other'
+     */
     protected $lang;
 
     /**
