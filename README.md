@@ -1,7 +1,7 @@
 # To Install it manually #
 - Unzip the plugin in the moodle .../filter/ directory.
 
-# To Enable it#
+# To Enable it #
 - Go to "Site Administration &gt;&gt; Plugins &gt;&gt; Filters &gt;&gt; Manage filters" and enable the plugin there.
 
 # To Use it #
