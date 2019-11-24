@@ -165,7 +165,9 @@ class filter_multilang2_testcase extends advanced_testcase {
             ),
             array (
                 'filterwithlang' => 'en',
-                'before' => 'Before {mlang fr}Frnçais{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang other}България{mlang} Middle {mlang other}България{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang fr}Français{mlang} After',
+                'before' => 'Before {mlang fr}Frnçais{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}' .
+                            '{mlang other}България{mlang} Middle {mlang other}България{mlang}' .
+                            '{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang fr}Français{mlang} After',
                 'after' => 'Before България Middle България After',
             ),
             array (
