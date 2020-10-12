@@ -53,7 +53,7 @@ class filter_multilang2_testcase extends advanced_testcase {
      *
      * @return void
      */
-    protected function setUp() {
+    protected function setUp():void {
         parent::setUp();
         $this->resetAfterTest(true);
         $this->filter = new filter_multilang2(context_system::instance(), array());
