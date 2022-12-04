@@ -26,6 +26,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_multilang2;
+
+use filter_multilang2;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -42,8 +46,9 @@ require_once($CFG->dirroot . '/filter/multilang2/filter.php');
  * @copyright  2014 Damyon Wiese
  * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \filter_multilang2
  */
-class filter_multilang2_testcase extends advanced_testcase {
+class filter_test extends \advanced_testcase {
 
     /** @var object The filter plugin object to perform the tests on */
     protected $filter;
@@ -56,7 +61,7 @@ class filter_multilang2_testcase extends advanced_testcase {
     protected function setUp():void {
         parent::setUp();
         $this->resetAfterTest(true);
-        $this->filter = new filter_multilang2(context_system::instance(), array());
+        $this->filter = new filter_multilang2(\context_system::instance(), array());
     }
 
     /**
