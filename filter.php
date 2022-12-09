@@ -77,7 +77,13 @@ class filter_multilang2 extends moodle_text_filter {
      */
     public function filter($text, array $options = array()) {
 
+        if (!is_string($text) || empty($text)) {
+            // Non-string data can not be filtered anyway.
+            return $text;
+        }
+
         if (stripos($text, 'mlang') === false) {
+            // Performance shortcut - if there is no 'mlang' text, nothing can match.
             return $text;
         }
 
