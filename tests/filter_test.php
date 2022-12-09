@@ -17,19 +17,19 @@
 /**
  * Tests for filter_multilang2.
  *
- * Based on unit tests from filter_text, by Damyon Wise.
+ * Based on unit tests from filter_multilang, by The Open University
  *
  * @package    filter_multilang2
  * @category   test
- * @copyright  2014 Damyon Wiese
- * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea
+ * @copyright  2014 onwards Damyon Wiese
+ * @copyright  2016 onwards Iñaki Arenaza & Mondragon Unibertsitatea
+ * @copyright  2019 onwards The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace filter_multilang2;
 
-global $CFG;
-require_once($CFG->dirroot . '/filter/multilang2/filter.php');
+use filter_multilang2;
 
 /**
  * Unit tests for Multi-Language v2 filter.
@@ -39,14 +39,9 @@ require_once($CFG->dirroot . '/filter/multilang2/filter.php');
  *
  * @package    filter_multilang2
  * @category   test
- * @copyright  2014 Damyon Wiese
- * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers     \filter_multilang2
  */
-class filter_multilang2_testcase extends advanced_testcase {
-
-    /** @var object The filter plugin object to perform the tests on */
-    protected $filter;
+class filter_test extends \advanced_testcase {
 
     /**
      * Setup the test framework
@@ -55,252 +50,55 @@ class filter_multilang2_testcase extends advanced_testcase {
      */
     protected function setUp():void {
         parent::setUp();
+
         $this->resetAfterTest(true);
-        $this->filter = new filter_multilang2(context_system::instance(), array());
+
+        // Enable multilang2 filter at top level.
+        filter_set_global_state('multilang2', TEXTFILTER_ON);
     }
 
     /**
-     * Perform the actual tests, once the unit test is set up.
+     * Setup parent language relationship.
      *
-     * @return void
+     * @param string $child the child language, e.g. 'fr_ca'.
+     * @param string $parent the parent language, e.g. 'fr'.
      */
-    public function test_filter_multilang2() {
+    protected function setup_parent_language(string $child, string $parent) {
         global $CFG;
 
-        $tests = array(
-            array (
-                'filterwithlang' => 'es',
-                'before' => 'No multilang tags',
-                'after'  => 'No multilang tags',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang es}Todo el texto está en español{mlang}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{MLANG es}Todo el texto está en español{MLANG}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{MLANG ES}Todo el texto está en español{MLANG}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{MlAnG Es}Todo el texto está en español{MlAnG}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => 'Some non-filtered content {mlang es}plus some content in Spanish (mejor dicho, en español){mlang}',
-                'after'  => 'Some non-filtered content plus some content in Spanish (mejor dicho, en español)',
-            ),
-            array (
-                'filterwithlang' => 'eu',
-                'before' => '{mlang es}Algo en español{mlang}{mlang eu}Zerbait euskeraz{mlang}',
-                'after'  => 'Zerbait euskeraz',
-            ),
-            array (
-                'filterwithlang' => 'eu',
-                'before' => 'Non-filtered {begin}{mlang es}En español{mlang}{mlang eu}Euskeraz{mlang}Non-filtered{end}',
-                'after'  => 'Non-filtered {begin}EuskerazNon-filtered{end}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang}Bad filter syntax{mlang}',
-                'after'  => '{mlang}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang-es}Bad filter syntax{mlang}',
-                'after'  => '{mlang-es}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang_es}Bad filter syntax{mlang}',
-                'after'  => '{mlang_es}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang _es}Este texto está en español{mlang}',
-                'after'  => '',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang -es}Este texto está en español{mlang}',
-                'after'  => '',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang}Bad filter syntax{mlang}{mlang es}Algo de español{mlang}',
-                'after'  => '{mlang}Bad filter syntax{mlang}Algo de español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => 'Before {mlang}Bad filter syntax{mlang}{mlang es}Algo de español{mlang} After',
-                'after'  => 'Before {mlang}Bad filter syntax{mlang}Algo de español After',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => 'Before {mlang non-existent-language}Some content{mlang} After',
-                'after'  => 'Before  After',
-            ),
-            array (
-                'filterwithlang' => 'en_us',
-                'before' => 'Before {mlang en_us}Some content{mlang} After',
-                'after'  => 'Before Some content After',
-            ),
-            array (
-                'filterwithlang' => 'en_us',
-                'before' => 'Before {mlang en-us}Some content{mlang} After',
-                'after'  => 'Before Some content After',
-            ),
-            array (
-                'filterwithlang' => 'en',
-                'before' => 'Before {mlang fr}French{mlang}{mlang it}Italian{mlang}{mlang de}Deutsch{mlang} After',
-                'after'  => 'Before  After',
-            ),
-            array (
-                'filterwithlang' => 'en',
-                'before' => 'Before {mlang fr}Frnçais{mlang}{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}' .
-                            '{mlang other}България{mlang} Middle {mlang other}България{mlang}' .
-                            '{mlang it}Italiano{mlang}{mlang de}Deutsch{mlang}{mlang fr}Français{mlang} After',
-                'after' => 'Before България Middle България After',
-            ),
-            array (
-                'filterwithlang' => 'en',
-                'before' => '{mlang de}Deutsch {mlang}no other language declared',
-                'after' => 'no other language declared',
-            ),
-            array (
-                'filterwithlang' => 'en',
-                'before' => '{mlang other}Other language{mlang}',
-                'after' => 'Other language',
-            ),
-            array (
-                'filterwithlang' => 'en',
-                'before' => '{mlang other}Other language{mlang} Middle {mlang de}Deutsch{mlang}{mlang other}Other language{mlang}',
-                'after' => 'Other language Middle Other language',
-            ),
-            array (
-                'filterwithlang' => 'fr',
-                'before' => '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
-                             This text is common for all languages because it is outside of all lang blocks.
-                             {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
-                'after'  => 'Hello!
-                             This text is common for all languages because it is outside of all lang blocks.
-                             Bye!',
-            ),
-            array (
-                'filterwithlang' => 'es_mx',
-                'before' => '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
-                             This text is common for all languages because it is outside of all lang blocks.
-                             {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
-                'after'  => '¡Hola!
-                             This text is common for all languages because it is outside of all lang blocks.
-                             ',
-            ),
-            array (
-                'filterwithlang' => 'it',
-                'before' => '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
-                             This text is common for all languages because it is outside of all lang blocks.
-                             {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
-                'after'  => '
-                             This text is common for all languages because it is outside of all lang blocks.
-                             Ciao!',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang en,fr,es}Todo el texto está en español{mlang}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang   en   ,      fr,es    }Todo el texto está en español{mlang}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mLaNg   eN   ,      FR,Es    }Todo el texto está en español{mlang}',
-                'after'  => 'Todo el texto está en español',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang   en  ,  ,  ,,,     fr,es,,     ,}Bad filter syntax{mlang}',
-                'after'  => '{mlang   en  ,  ,  ,,,     fr,es,,     ,}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang   en   ,}Bad filter syntax{mlang}',
-                'after'  => '{mlang   en   ,}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang   en,     }Bad filter syntax{mlang}',
-                'after'  => '{mlang   en,     }Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang en  ,   }Bad filter syntax{mlang}',
-                'after'  => '{mlang en  ,   }Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang   en,   ,  }Bad filter syntax{mlang}',
-                'after'  => '{mlang   en,   ,  }Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang en,,es}Bad filter syntax{mlang}',
-                'after'  => '{mlang en,,es}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before'  => '{mlang en  ,,  es  }Bad filter syntax{mlang}',
-                'after'  => '{mlang en  ,,  es  }Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before'  => '{mlang en , , es}Bad filter syntax{mlang}',
-                'after'  => '{mlang en , , es}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before'  => '{mlang en , , es , }Bad filter syntax{mlang}',
-                'after'   => '{mlang en , , es , }Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang en,es,}Bad filter syntax{mlang}',
-                'after'  => '{mlang en,es,}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang en , es , }Bad filter syntax{mlang}',
-                'after'  => '{mlang en , es , }Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang,es}Bad filter syntax{mlang}',
-                'after'  => '{mlang,es}Bad filter syntax{mlang}',
-            ),
-            array (
-                'filterwithlang' => 'es',
-                'before' => '{mlang ,es}Bad filter syntax{mlang}',
-                'after'  => '{mlang ,es}Bad filter syntax{mlang}',
-            ),
-        );
+        $langfolder = $CFG->dataroot . '/lang/' . $child;
+        check_dir_exists($langfolder);
+        $langconfig = "<?php\n\$string['parentlanguage'] = '$parent';";
+        file_put_contents($langfolder . '/langconfig.php', $langconfig);
+    }
 
-        // As we need to switch languages to test the filter, store the current
-        // language to restore it at the end the tests.
-        $currlang = $CFG->lang;
-        foreach ($tests as $test) {
-            $CFG->lang = $test['filterwithlang'];
-            $this->assertEquals($test['after'], $this->filter->filter($test['before']));
+    /**
+     * Data provider for multi-language filtering tests.
+     */
+    public function multilang2_test_cases() {
+        require_once(dirname(__FILE__) . '/actual_test_cases.php');
+        return multilang2_actual_test_cases();
+    }
+
+    /**
+     * Tests the filtering of multi-language strings.
+     *
+     * @dataProvider multilang2_test_cases
+     *
+     * @param string $expectedoutput The expected filter output.
+     * @param string $input the input that is filtererd.
+     * @param string $targetlang the laguage to set as the current languge .
+     * @param array $parentlangs Array child lang => parent lang. E.g. ['es_co' => 'es', 'es_mx' => 'es'].
+     */
+    public function test_filtering($expectedoutput, $input, $targetlang, $parentlangs = []) {
+        global $SESSION;
+        $SESSION->forcelang = $targetlang;
+
+        foreach ($parentlangs as $child => $parent) {
+            $this->setup_parent_language($child, $parent);
         }
-        $CFG->lang = $currlang;
+
+        $filtered = format_text($input, FORMAT_HTML, array('context' => \context_system::instance()));
+        $this->assertEquals($expectedoutput, $filtered);
     }
 }
