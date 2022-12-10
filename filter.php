@@ -114,6 +114,9 @@ class filter_multilang2 extends moodle_text_filter {
             return $text; // Error during regex processing, keep original text.
         }
         if ($this->replacementdone) {
+            if (empty($options['noclean'])) {
+                $result = purify_html($result, ['allowid' => true]);
+            }
             return $result;
         }
 
@@ -125,6 +128,9 @@ class filter_multilang2 extends moodle_text_filter {
                                         $text);
         if (is_null($result)) {
             return $text;
+        }
+        if (empty($options['noclean'])) {
+            $result = purify_html($result, ['allowid' => true]);
         }
         return $result;
     }

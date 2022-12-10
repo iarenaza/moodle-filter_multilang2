@@ -3,6 +3,8 @@
 
 # To Enable it #
 - Go to "Site Administration &gt;&gt; Plugins &gt;&gt; Filters &gt;&gt; Manage filters" and enable the plugin there.
+- Move the "Multi-Language Content (v2)" filter to the top of list of filters so that it is executed before any other
+filter that may be adding any interactive content that is not compatible with standard Moodle text cleaning.
 
 # To Use it #
 - Create your contents in multiple languages.
@@ -25,6 +27,7 @@
   - Else, as fallback, print the text with language 'other' if such
    one is set.
 - Text outside of "lang blocks" will always be shown.
+- All untrusted text is automatically sanitised after multilang processing.
 
 ## Definition of "lang block" ##
 Is any text (including spaces, tabs, linefeeds or return characters) placed between '{mlang XX}' and '{mlang}' markers. You can not only put text inside "lang block", but also images, videos or external embedded content. For example, this is a valid "lang block":

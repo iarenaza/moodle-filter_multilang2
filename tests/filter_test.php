@@ -26,6 +26,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_multilang2;
+
+use filter_multilang2, context_system, advanced_testcase;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -43,7 +47,7 @@ require_once($CFG->dirroot . '/filter/multilang2/filter.php');
  * @copyright  2016 Iñaki Arenaza & Mondragon Unibertsitatea
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class filter_multilang2_testcase extends advanced_testcase {
+class filter_test extends advanced_testcase {
 
     /** @var object The filter plugin object to perform the tests on */
     protected $filter;
@@ -292,6 +296,28 @@ class filter_multilang2_testcase extends advanced_testcase {
                 'before' => '{mlang ,es}Bad filter syntax{mlang}',
                 'after'  => '{mlang ,es}Bad filter syntax{mlang}',
             ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '<div class="stuff {mlang en}">Some{mlang}{mlang other}bad{mlang}</div>nesting',
+                'after'  => '<div class="stuff">Some</div>nesting',
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '<div class="stuff {mlang es}">Some{mlang}{mlang other}bad{mlang}</div>nesting',
+                'after'  => '<div class="stuff bad&lt;/div&gt;nesting&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"></div>',
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '<div class="stuff {mlang en}">Some{mlang}{mlang other}bad{mlang}</div>nesting',
+                'after'  => '<div class="stuff ">Some</div>nesting',
+                'options' => ['noclean' => true],
+            ),
+            array (
+                'filterwithlang' => 'en',
+                'before' => '<div class="stuff {mlang es}">Some{mlang}{mlang other}bad{mlang}</div>nesting',
+                'after'  => '<div class="stuff bad</div>nesting',
+                'options' => ['noclean' => true],
+            ),
         );
 
         // As we need to switch languages to test the filter, store the current
@@ -299,7 +325,12 @@ class filter_multilang2_testcase extends advanced_testcase {
         $currlang = $CFG->lang;
         foreach ($tests as $test) {
             $CFG->lang = $test['filterwithlang'];
-            $this->assertEquals($test['after'], $this->filter->filter($test['before']));
+            if (isset($test['options'])) {
+                $options = $test['options'];
+            } else {
+                $options = [];
+            }
+            $this->assertEquals($test['after'], $this->filter->filter($test['before'], $options));
         }
         $CFG->lang = $currlang;
     }
