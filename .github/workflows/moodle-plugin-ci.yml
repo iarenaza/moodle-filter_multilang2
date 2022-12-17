@@ -1,6 +1,10 @@
 name: Moodle plugin CI
 on: [push, pull_request]
 
+# Give just enough permissions to fetch code (actions/checkout)
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
