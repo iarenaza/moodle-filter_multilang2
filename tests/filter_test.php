@@ -303,4 +303,26 @@ class filter_multilang2_testcase extends advanced_testcase {
         }
         $CFG->lang = $currlang;
     }
+
+    public function test_filtering_stages() {
+        global $CFG;
+        require_once($CFG->dirroot . '/lib/filterlib.php');
+
+        $this->resetAfterTest(true);
+
+        if (!method_exists('moodle_text_filter', 'filter_stage_pre_format')) {
+            $this->markTestSkipped('Outdated Moodle version without text filtering stages detected');
+        }
+
+        // We test here that multilang is filtered before conversion of text format and text cleaning.
+
+        filter_set_global_state('multilang2', TEXTFILTER_ON);
+        $text = '#{mlang en}#{mlang}{mlang other}##{mlang}heading';
+        $this->assertSame("<h2>heading</h2>\n", format_text($text, FORMAT_MARKDOWN));
+        $this->assertSame("<h2>heading</h2>\n", format_text($text, FORMAT_MARKDOWN, ['noclean' => true]));
+
+        $text = '<div class="{mlang xx}">{mlang} " data-x="1{mlang yy}<div class="{mlang}">xxx</div></div>';
+        $this->assertSame('<div>xxx</div>', format_text($text, FORMAT_HTML));
+        $this->assertSame('<div class=" " data-x="1">xxx</div></div>', format_text($text, FORMAT_HTML, ['noclean' => true]));
+    }
 }

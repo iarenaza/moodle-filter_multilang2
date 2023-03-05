@@ -69,6 +69,56 @@ class filter_multilang2 extends moodle_text_filter {
     protected $lang;
 
     /**
+     * Filter text before changing format to HTML.
+     *
+     * @param string $text
+     * @param array $options
+     * @return string
+     */
+    public function filter_stage_pre_format(string $text, array $options): string {
+        // Ideally we want to get rid of all other languages before any text formatting.
+        return $this->filter($text, $options);
+    }
+
+    /**
+     * Filter HTML text before sanitising text.
+     *
+     * Text sanitisation might not be performed if $options['noclean'] true.
+     *
+     * @param string $text
+     * @param array $options
+     * @return string
+     */
+    public function filter_stage_pre_clean(string $text, array $options): string {
+        return $text;
+    }
+
+    /**
+     * Filter HTML text after sanitisation.
+     *
+     * @param string $text
+     * @param array $options
+     * @return string
+     */
+    public function filter_stage_post_clean(string $text, array $options): string {
+        return $text;
+    }
+
+    /**
+     * Filter simple text coming from format_string().
+     *
+     * Note that unless $CFG->formatstringstriptags is disabled
+     * HTML tags are not expected in returned value.
+     *
+     * @param string $text
+     * @param array $options
+     * @return string
+     */
+    public function filter_stage_string(string $text, array $options): string {
+        return $this->filter($text, $options);
+    }
+
+    /**
      * This function filters the received text based on the language
      * tags embedded in the text, and the current user language or
      * 'other', if present.
