@@ -48,7 +48,7 @@ class filter_test extends \advanced_testcase {
      *
      * @return void
      */
-    protected function setUp():void {
+    protected function setUp(): void {
         parent::setUp();
 
         $this->resetAfterTest(true);
@@ -63,7 +63,7 @@ class filter_test extends \advanced_testcase {
      * @param string $child the child language, e.g. 'fr_ca'.
      * @param string $parent the parent language, e.g. 'fr'.
      */
-    protected function setup_parent_language(string $child, string $parent) {
+    protected function setup_parent_language(string $child, string $parent): void {
         global $CFG;
 
         $langfolder = $CFG->dataroot . '/lang/' . $child;
@@ -75,7 +75,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Data provider for multi-language filtering tests.
      */
-    public function multilang2_test_cases() {
+    public function multilang2_test_cases(): array {
         require_once(dirname(__FILE__) . '/actual_test_cases.php');
         return multilang2_actual_test_cases();
     }
@@ -90,7 +90,7 @@ class filter_test extends \advanced_testcase {
      * @param string $targetlang the laguage to set as the current languge .
      * @param array $parentlangs Array child lang => parent lang. E.g. ['es_co' => 'es', 'es_mx' => 'es'].
      */
-    public function test_filtering($expectedoutput, $input, $targetlang, $parentlangs = []) {
+    public function test_filtering($expectedoutput, $input, $targetlang, $parentlangs = []): void {
         global $SESSION;
         $SESSION->forcelang = $targetlang;
 
@@ -102,7 +102,7 @@ class filter_test extends \advanced_testcase {
         $this->assertEquals($expectedoutput, $filtered);
     }
 
-    public function test_filtering_stages() {
+    public function test_filtering_stages(): void {
         global $CFG;
         require_once($CFG->dirroot . '/lib/filterlib.php');
 

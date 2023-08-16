@@ -133,7 +133,7 @@ class filter_multilang2 extends moodle_text_filter {
      * @param array $options The filter options.
      * @return string The filtered text for this multilang block.
      */
-    public function filter($text, array $options = array()) {
+    public function filter($text, array $options = array()): string {
 
         if (!is_string($text) || empty($text)) {
             // Non-string data can not be filtered anyway.
@@ -204,7 +204,7 @@ class filter_multilang2 extends moodle_text_filter {
      *                         and the text associated with those languages.
      * @return string
      */
-    protected function replace_callback($replacelang, $langblock) {
+    protected function replace_callback($replacelang, $langblock): string {
         /* Normalize languages. We can use strtolower instead of
          * core_text::strtolower() as language short names are ASCII
          * only, and strtolower is much faster. We have to remove the

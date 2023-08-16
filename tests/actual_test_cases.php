@@ -28,7 +28,7 @@
  *
  * @return array of test cases
  */
-function multilang2_actual_test_cases() {
+function multilang2_actual_test_cases(): array {
     return [
         [
             'No multilang tags',
