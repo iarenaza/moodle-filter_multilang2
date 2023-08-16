@@ -67,6 +67,14 @@ class filter_multilang2 extends moodle_text_filter {
     protected $lang;
 
     /**
+     * @var boolean Whether the filter has already found a block that
+     *              corresponds to the user language, or it has to
+     *              "fall back" to the "other" "language block (if it
+     *              exists).
+     */
+    protected $replacementdone;
+
+    /**
      * This function filters the received text based on the language
      * tags embedded in the text, and the current user language or
      * 'other', if present.
