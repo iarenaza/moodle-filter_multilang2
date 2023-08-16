@@ -41,11 +41,23 @@ jobs:
           # Moodle 3.11 only supports PHP 7.4, so include it separately.
           - moodle-branch: 'MOODLE_311_STABLE'
             php: '7.4'
+            database: 'mariadb'
+          - moodle-branch: 'MOODLE_311_STABLE'
+            php: '7.4'
+            database: 'pgsql'
           # Only Moodle 4.2 (recent enough) and master support PHP 8.2 (so far)
           - moodle-branch: 'MOODLE_402_STABLE'
             php: '8.2'
+            database: 'mariadb'
+          - moodle-branch: 'MOODLE_402_STABLE'
+            php: '8.2'
+            database: 'pgsql'
           - moodle-branch: 'master'
             php: '8.2'
+            database: 'mariadb'
+          - moodle-branch: 'master'
+            php: '8.2'
+            database: 'pgsql'
         exclude:
           # Moodle 4.2 and master don't support PHP 7.4, so exclude this combination.
           - moodle-branch: 'MOODLE_402_STABLE'
