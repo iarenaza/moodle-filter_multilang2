@@ -1,4 +1,5 @@
 name: Moodle plugin CI
+
 on: [push, pull_request]
 
 # Give just enough permissions to fetch code (actions/checkout)
@@ -7,7 +8,6 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -21,23 +21,20 @@ jobs:
           - moodle-branch: 'MOODLE_311_STABLE'
             php: '7.4'
             database: 'pgsql'
+    runs-on: ubuntu-22.04
 
     services:
       postgres:
-        image: postgres:14
+        image: postgres:13
         env:
           POSTGRES_USER: 'postgres'
           POSTGRES_HOST_AUTH_METHOD: 'trust'
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 3
         ports:
           - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
 
       mariadb:
-        image: mariadb:10.5
+        image: mariadb:10
         env:
           MYSQL_USER: 'root'
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
@@ -59,11 +56,13 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ matrix.extensions }}
           ini-values: max_input_vars=5000
+          # If you are not using code coverage, keep "none". Otherwise, use "pcov" (Moodle 3.10 and up) or "xdebug".
+          # If you try to use code coverage with "none", it will fallback to phpdbg (which has known problems).
           coverage: none
 
       - name: Deploy moodle-plugin-ci
         run: |
-          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^3
+          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^4
           # Add dirs to $PATH
           echo $(cd ci/bin; pwd) >> $GITHUB_PATH
           echo $(cd ci/vendor/bin; pwd) >> $GITHUB_PATH
@@ -77,7 +76,6 @@ jobs:
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
-          IGNORE_PATHS: 'templates/local/mobile'
 
       - name: PHP Lint
         if: ${{ always() }}
@@ -95,11 +93,11 @@ jobs:
 
       - name: Moodle Code Checker
         if: ${{ always() }}
-        run: moodle-plugin-ci codechecker
+        run: moodle-plugin-ci phpcs --max-warnings 0
 
       - name: Moodle PHPDoc Checker
         if: ${{ always() }}
-        run: moodle-plugin-ci phpdoc
+        run: moodle-plugin-ci phpdoc --max-warnings 0
 
       - name: Validating
         if: ${{ always() }}
@@ -119,7 +117,7 @@ jobs:
 
       - name: PHPUnit tests
         if: ${{ always() }}
-        run: moodle-plugin-ci phpunit
+        run: moodle-plugin-ci phpunit --fail-on-warning
 
       - name: Behat features
         if: ${{ always() }}
