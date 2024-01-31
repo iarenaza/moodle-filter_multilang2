@@ -75,6 +75,9 @@ jobs:
           # It seems Moodle 4.0 doesn't fully support PHP 8.1, so exclude this combination.
           - moodle-branch: 'MOODLE_400_STABLE'
             php: '8.1'
+          # master no longer support 8.0, so exclude this combination.
+          - moodle-branch: 'master'
+            php: '8.0'
 
     steps:
       - name: Checkout
