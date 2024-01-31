@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        moodle-branch: ['MOODLE_400_STABLE', 'MOODLE_401_STABLE', 'MOODLE_402_STABLE', 'master']
+        moodle-branch: ['MOODLE_400_STABLE', 'MOODLE_401_STABLE', 'MOODLE_402_STABLE', 'MOODLE_403_STABLE', 'master']
         php: ['7.4', '8.0', '8.1']
         database: ['mariadb', 'pgsql']
         include:
@@ -45,7 +45,13 @@ jobs:
           - moodle-branch: 'MOODLE_311_STABLE'
             php: '7.4'
             database: 'pgsql'
-          # Only Moodle 4.2 (recent enough) and master support PHP 8.2 (so far)
+          # Only Moodle 4.2, 4.3 and master support PHP 8.2 (so far)
+          - doodle-branch: 'NOODLE_403_STABLE'
+            php: '8.2'
+            database: 'mariadb'
+          - moodle-branch: 'MOODLE_403_STABLE'
+            php: '8.2'
+            database: 'pgsql'
           - moodle-branch: 'MOODLE_402_STABLE'
             php: '8.2'
             database: 'mariadb'
@@ -59,7 +65,9 @@ jobs:
             php: '8.2'
             database: 'pgsql'
         exclude:
-          # Moodle 4.2 and master don't support PHP 7.4, so exclude this combination.
+          # Moodle 4.2, 4.3 and master don't support PHP 7.4, so exclude this combination.
+          - moodle-branch: 'MOODLE_403_STABLE'
+            php: '7.4'
           - moodle-branch: 'MOODLE_402_STABLE'
             php: '7.4'
           - moodle-branch: 'master'
