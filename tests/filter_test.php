@@ -75,7 +75,7 @@ class filter_test extends \advanced_testcase {
     /**
      * Data provider for multi-language filtering tests.
      */
-    public function multilang2_test_cases(): array {
+    public static function multilang2_test_cases(): array {
         require_once(dirname(__FILE__) . '/actual_test_cases.php');
         return multilang2_actual_test_cases();
     }
@@ -98,7 +98,7 @@ class filter_test extends \advanced_testcase {
             $this->setup_parent_language($child, $parent);
         }
 
-        $filtered = format_text($input, FORMAT_HTML, array('context' => \context_system::instance()));
+        $filtered = format_text($input, FORMAT_HTML, ['context' => \context_system::instance()]);
         $this->assertEquals($expectedoutput, $filtered);
     }
 

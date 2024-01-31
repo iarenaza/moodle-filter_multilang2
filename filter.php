@@ -133,7 +133,7 @@ class filter_multilang2 extends moodle_text_filter {
      * @param array $options The filter options.
      * @return string The filtered text for this multilang block.
      */
-    public function filter($text, array $options = array()) {
+    public function filter($text, array $options = []) {
 
         if (!is_string($text) || empty($text)) {
             // Non-string data can not be filtered anyway.
@@ -146,7 +146,7 @@ class filter_multilang2 extends moodle_text_filter {
         }
 
         if (!isset(self::$parentcache)) {
-            self::$parentcache['other'] = array();
+            self::$parentcache['other'] = [];
         }
 
         $this->replacementdone = false;
