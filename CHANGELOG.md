@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2024-01-30
+
 ### Added
 - This CHANGELOG.
 - Moodle 4.3 to the CI test matrix.
@@ -29,7 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - [#39] MDL-77525 apply multilang2 before text formatting and cleaning
 
-[UNRELEASED]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.0.0...HEAD
+[UNRELEASED]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/iarenaza/moodle-filter_multilang2/compare/1.1.2...2.0.0
 [1.1.2]: https://github.com/iarenaza/moodle-filter_multilang2/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/iarenaza/moodle-filter_multilang2/compare/1.0.1...1.1.1
