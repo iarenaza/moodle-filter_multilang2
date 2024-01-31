@@ -256,6 +256,20 @@ function multilang2_actual_test_cases(): array {
             '{mlang ,es}Bad filter syntax{mlang}',
             'es',
         ],
+        [
+            null,
+            null,
+            'es',
+        ],
+        [
+            123,
+            123,
+            'es',
+        ],
+        [
+            123.0,
+            123.0,
+            'es',
+        ],
     ];
 }
-
