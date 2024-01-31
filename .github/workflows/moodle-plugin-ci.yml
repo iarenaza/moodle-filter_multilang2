@@ -46,7 +46,7 @@ jobs:
             php: '7.4'
             database: 'pgsql'
           # Only Moodle 4.2, 4.3 and master support PHP 8.2 (so far)
-          - doodle-branch: 'NOODLE_403_STABLE'
+          - moodle-branch: 'MOODLE_403_STABLE'
             php: '8.2'
             database: 'mariadb'
           - moodle-branch: 'MOODLE_403_STABLE'
