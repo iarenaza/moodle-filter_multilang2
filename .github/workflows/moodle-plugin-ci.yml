@@ -1,3 +1,6 @@
+# Upstream for this Action is availble at
+# https://github.com/moodlehq/moodle-plugin-ci/blob/master/gha.dist.yml
+
 name: Moodle plugin CI
 
 on: [push, pull_request]
