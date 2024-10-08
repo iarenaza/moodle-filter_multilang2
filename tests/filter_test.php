@@ -41,7 +41,7 @@ use filter_multilang2;
  * @category   test
  * @covers     \filter_multilang2
  */
-class filter_test extends \advanced_testcase {
+final class filter_test extends \advanced_testcase {
 
     /**
      * Setup the test framework

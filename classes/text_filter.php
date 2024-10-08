@@ -56,14 +56,20 @@
 
 namespace filter_multilang2;
 
-defined('MOODLE_INTERNAL') || die;
-
 if (class_exists('\core_filters\text_filter')) {
     class_alias('\core_filters\text_filter', 'base_text_filter');
 } else {
     class_alias('\moodle_text_filter', 'base_text_filter');
 }
 
+/**
+ * A Moodle text filter to enable multilangual content.
+ *
+ * @package    filter_multilang2
+ * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
+ *             2015 onwards Iñaki Arenaza & Mondragon Unibertsitata
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class text_filter extends \base_text_filter {
 
     /**
@@ -78,10 +84,10 @@ class text_filter extends \base_text_filter {
     protected $lang;
 
     /**
-     * @var boolean Whether the filter has already found a block that
-     *              corresponds to the user language, or it has to
-     *              "fall back" to the "other" "language block (if it
-     *              exists).
+     * @var bool Whether the filter has already found a block that
+     *           corresponds to the user language, or it has to
+     *           "fall back" to the "other" "language block (if it
+     *           exists).
      */
     protected $replacementdone;
 
