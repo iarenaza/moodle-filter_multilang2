@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2024-10-08
+- Add support to Moodle 4.5
+
 ## [2.0.1] - 2024-01-30
 
 ### Added
