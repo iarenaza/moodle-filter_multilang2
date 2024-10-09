@@ -57,9 +57,9 @@
 namespace filter_multilang2;
 
 if (class_exists('\core_filters\text_filter')) {
-    class_alias('\core_filters\text_filter', 'base_text_filter');
+    class_alias('\core_filters\text_filter', 'filter_multilang2_base_text_filter');
 } else {
-    class_alias('\moodle_text_filter', 'base_text_filter');
+    class_alias('\moodle_text_filter', 'filter_multilang2_base_text_filter');
 }
 
 /**
@@ -70,7 +70,7 @@ if (class_exists('\core_filters\text_filter')) {
  *             2015 onwards Iñaki Arenaza & Mondragon Unibertsitata
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class text_filter extends \base_text_filter {
+class text_filter extends \filter_multilang2_base_text_filter {
 
     /**
      * @var array Cache of parent language(s) of a given language
