@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.1] - 2024-10-08
-- Add support to Moodle 4.5
+## [2.0.3] - 2024.10.12
+
+### Fixed
+- `moodle-plugin-ci validate` now passes successfully.
+
+## [2.0.2] - 2024-10-08
+
+### Added
+- [#49] Add support to Moodle 4.5
+- Added Moodle 4.4 and 4.5 to the CI test matrix
 
 ## [2.0.1] - 2024-01-30
 
