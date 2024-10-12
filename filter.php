@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Filter main class.
+ * A Moodle text filter to enable multilangual content.
  *
  * @package    filter_multilang2
  * @copyright  Gaetan Frenoy <gaetan@frenoy.net>
