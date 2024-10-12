@@ -18,6 +18,7 @@
  * A Moodle text filter to enable multilangual content.
  *
  * @package    filter_multilang2
+ * @copyright  1999 onwards Martin Dougiamas (http://dougiamas.com)
  * @copyright  Gaetan Frenoy <gaetan@frenoy.net>
  * @copyright  2004 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
