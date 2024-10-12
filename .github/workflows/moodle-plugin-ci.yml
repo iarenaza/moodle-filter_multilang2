@@ -43,6 +43,7 @@ jobs:
           - 'MOODLE_403_STABLE'
           - 'MOODLE_404_STABLE'
           - 'MOODLE_405_STABLE'
+          - 'master'
         php:
           - '8.0'
           - '8.1'
