@@ -24,5 +24,8 @@
  * @copyright  2015 onwards Iñaki Arenaza & Mondragon Unibertsitatea
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-class_alias(\filter_multilang2\text_filter::class, \filter_multilang2::class);
+class filter_multilang2 extends \filter_multilang2\text_filter {
+    // The actual implementation in under classes/text_filter.php
+    // This file is just a workaround to make the filter work
+    // in Moodle versions below 4.5.
+}
