@@ -53,9 +53,11 @@ jobs:
           # Moodle 4.2 doesn't support PHP 8.3, so exclude this combination.
           - moodle-branch: 'MOODLE_402_STABLE'
             php: '8.3'
-          # Moodle 4.1 doesn't support PHP 8.3, so exclude this combination.
+          # Moodle 4.1 officially supports up to PHP 8.1 only, so exclude other combinations.
           - moodle-branch: 'MOODLE_401_STABLE'
             php: '8.3'
+          - moodle-branch: 'MOODLE_401_STABLE'
+            php: '8.2'
 
     steps:
       - name: Checkout
