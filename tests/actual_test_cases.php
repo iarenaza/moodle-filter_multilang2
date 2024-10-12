@@ -27,8 +27,6 @@
  * Returns the actual test cases for the unit tests.
  *
  * @return array of test cases
- *
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 function multilang2_actual_test_cases(): array {
     return [

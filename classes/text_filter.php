@@ -111,8 +111,6 @@ class text_filter extends \filter_multilang2_base_text_filter {
      * @param string $text
      * @param array $options
      * @return string
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function filter_stage_pre_clean(string $text, array $options): string {
         return $text;
@@ -124,8 +122,6 @@ class text_filter extends \filter_multilang2_base_text_filter {
      * @param string $text
      * @param array $options
      * @return string
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function filter_stage_post_clean(string $text, array $options): string {
         return $text;
@@ -153,8 +149,6 @@ class text_filter extends \filter_multilang2_base_text_filter {
      * @param string $text The text to filter.
      * @param array $options The filter options.
      * @return string The filtered text for this multilang block.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function filter($text, array $options = []) {
 
