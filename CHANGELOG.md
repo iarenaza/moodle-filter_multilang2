@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2024.10.18
+
+### Fixed
+
+- [#54] Fixed exceptions thrown when using Moodle 4.1 in some sites (thanks to Michael Milette!)
+
 ## [2.0.3] - 2024.10.12
 
 ### Fixed
