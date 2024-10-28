@@ -25,5 +25,44 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['filtername'] = 'Eduki eleanitza (v2)';
-$string['pluginname'] = 'Eduki eleanitza (v2) Iragazkia';
+$string['filtername'] = 'Eduki eleaniztuna (2.bertsioa)';
+$string['parentlangbehaviour'] = 'guraso-hizkuntzen portaera';
+$string['parentlangbehaviour_desc'] = '<p>Iragazkiak hizkuntza-bloke
+bat bistaratu behar den ala ez egiaztatzen duenean, blokean
+zehaztutako hizkuntzak edukia ikusten ari den erabiltzailea erabiltzen
+ari den hizkuntzarekin lotzen saiatzen da. Bat-etortze hau hiru era
+ezberdinetan egin daiteke. Iragazkiak hiru era horiei
+<em>guraso-hizkuntzen portaera</em> deitzen die:</p>
+<ul>
+
+<li><b>Beti erabili guraso-hizkuntzak, \'en\' izan ezik</b>. <em>Hau
+da pluginaren portaera tradizionala</em>, eta ezarpenaren balio
+lehenetsia da. Jokabide hau hautatzen denean, iragazkiak
+hizkuntza-blokean zehaztutako hizkuntzak eta hizkuntza horien
+guraso-hizkuntza guztiak (errekurtsiboki hartuta) erabiltzen ditu,
+edukia ikusten ari den erabiltzailea erabiltzen ari den hizkuntzarekin
+bat etortzeko. Baina ingelesa (\'en\') ez da inoiz
+guraso-hizkuntzatzat hartzen kasu honetan, eta guraso-hizkuntzen
+zerrendatik kentzen da. Adibidez, hizkuntza-zerrendan \'en_kids\'
+zehazten duen hizkuntza-bloke bat ez da bistaratuko edukia ikusten are
+den erabiltzailea erabiltzen ari den hizkuntza \'en\' bada.  Hala eta
+guztiz ere, iragazkiak ingelesa (\'en\') nahitaez erabiliko du
+hizkuntza-blokean esplizituki zehazten bada. (adib., <small><tt>{mlang
+en}Testu hau bistaratuko da edukia ikusten ari den erabiltzailea
+erabiltzen ari den hizkuntza \'en\' bada{mlang}</tt></small>)</li>
+<li><b>Beti erabili guraso-hizkuntzak, \'en\' barne </b>. "Beti erabili
+guraso-hizkuntzak, \'en\' izan ezik" bezala funtzionatzen duena, baina
+ez du ingelesa (\'en\') guraso-hizkuntzen zerrendatik kentzen.
+Adibidez, hizkuntza-zerrendan \'en_kids\' zehazten duen
+hizkuntza-bloke bat bistaratuko da edukia ikusten ari den
+erabiltzailea erabiltzen ari den hizkuntza \'en\' bada.</li>
+<li><b>Ez erabili inoiz guraso-hizkuntzak.</b> Izenak dioen bezala,
+guraso-hizkuntzak ez dira inoiz erabiliko edukia ikusten ari den
+erabiltzailea erabiltzen ari den hizkuntzarekin bat egiteko. Iragazkia
+hizkuntza-blokean zehaztutako hizkuntzetara mugatzen da.</li>
+</ul>';
+$string['parentlangdefault'] = 'Beti erabili guraso-hizkuntzak, \'en\' izan ezik (portaera tradizionala).';
+$string['parentlangalwaysen'] = 'Beti erabili guraso-hizkuntzak, \'en\' barne.';
+$string['parentlangnever'] = 'Ez erabili inoiz guraso-hizkuntzak.';
+$string['pluginname'] = 'Eduki eleaniztunaren Iragazkia (2.bertsioa)';
+$string['privacy:metadata'] = 'Eduki eleaniztunaren Iragazkia (2.bertsioa) pluginak ez du datu pertsonalik biltzen.';

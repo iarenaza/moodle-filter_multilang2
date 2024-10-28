@@ -94,8 +94,10 @@ final class filter_test extends \advanced_testcase {
      * @param string $input the input that is filtererd.
      * @param string $targetlang the laguage to set as the current languge .
      * @param array $parentlangs Array child lang => parent lang. E.g. ['es_co' => 'es', 'es_mx' => 'es'].
+     * @param string $parentlangbehaviour the parent languages behaviour to use.
      */
-    public function test_filtering($expectedoutput, $input, $targetlang, $parentlangs = []): void {
+    public function test_filtering($expectedoutput, $input, $targetlang, $parentlangs = [],
+                                   $parentlangbehaviour = 'default'): void {
         global $SESSION;
         $SESSION->forcelang = $targetlang;
 
@@ -103,6 +105,8 @@ final class filter_test extends \advanced_testcase {
             $this->setup_parent_language($child, $parent);
         }
 
+        set_config('parentlangbehaviour', $parentlangbehaviour, 'filter_multilang2');
+        \filter_multilang2\text_filter::reset_parentcache();
         $filtered = format_text($input, FORMAT_HTML, ['context' => \context_system::instance()]);
         $this->assertEquals($expectedoutput, $filtered);
     }
