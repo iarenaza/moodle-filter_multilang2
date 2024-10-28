@@ -70,6 +70,11 @@ final class filter_test extends \advanced_testcase {
         check_dir_exists($langfolder);
         $langconfig = "<?php\n\$string['parentlanguage'] = '$parent';";
         file_put_contents($langfolder . '/langconfig.php', $langconfig);
+
+        $langfolder = $CFG->dataroot . '/lang/' . $parent;
+        check_dir_exists($langfolder);
+        $langconfig = "<?php\n\$string['parentlanguage'] = '';";
+        file_put_contents($langfolder . '/langconfig.php', $langconfig);
     }
 
     /**

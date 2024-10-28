@@ -162,10 +162,11 @@ function multilang2_actual_test_cases(): array {
             '¡Hola!
              This text is common for all languages because it is outside of all lang blocks.
              ',
-            '{mlang other}Hello!{mlang}{mlang es,es_mx}¡Hola!{mlang}
+            '{mlang other}Hello!{mlang}{mlang es}¡Hola!{mlang}
              This text is common for all languages because it is outside of all lang blocks.
              {mlang other}Bye!{mlang}{mlang it}Ciao!{mlang}',
-            'es_mx', ['es_mx' => 'es'],
+            'es_mx',
+            ['es_mx' => 'es'],
         ],
         [
             '
