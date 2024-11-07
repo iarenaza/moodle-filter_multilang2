@@ -173,7 +173,7 @@ class text_filter extends \filter_multilang2_base_text_filter {
      * Specially useful (but not only) for unit tests.
      *
      */
-    public static function reset_parentcache () :void {
+    public static function reset_parentcache(): void {
         self::$parentcache = ['other' => []];
     }
 
@@ -213,7 +213,7 @@ class text_filter extends \filter_multilang2_base_text_filter {
                     $realrootisen = self::$stringmanager->get_string('parentlanguage', 'langconfig',
                                                                      null, $parentlangs[0]);
                     if ($realrootisen === 'en') {
-                        $parentlangs = array_merge(array('en'), $parentlangs);
+                        $parentlangs = array_merge(['en'], $parentlangs);
                     }
                 }
             }
@@ -278,7 +278,7 @@ class text_filter extends \filter_multilang2_base_text_filter {
         $blocklangs = explode(',', str_replace(' ', '', str_replace('-', '_', strtolower($langblock[1]))));
         $blocktext = $langblock[2];
         if ($this->parentlangbehaviour === 'never') {
-            $parentlangs = array();
+            $parentlangs = [];
         } else {
             $parentlangs = self::$parentcache[$replacelang];
         }

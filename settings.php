@@ -25,9 +25,9 @@
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
-    $options = array('default' => new lang_string('parentlangdefault', 'filter_multilang2'),
-                     'include_en' => new lang_string('parentlangalwaysen', 'filter_multilang2'),
-                     'never' => new lang_string('parentlangnever', 'filter_multilang2'));
+    $options = ['default' => new lang_string('parentlangdefault', 'filter_multilang2'),
+                'include_en' => new lang_string('parentlangalwaysen', 'filter_multilang2'),
+                'never' => new lang_string('parentlangnever', 'filter_multilang2')];
     $items[] = new admin_setting_configselect('filter_multilang2/parentlangbehaviour',
                                               new lang_string('parentlangbehaviour', 'filter_multilang2'),
                                               new lang_string('parentlangbehaviour_desc', 'filter_multilang2'),

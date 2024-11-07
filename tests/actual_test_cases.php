@@ -274,7 +274,11 @@ function multilang2_actual_test_cases(): array {
         ],
         [
             'Some Canadian French text.Some French text.',
-            '{mlang fr_ca}Some Canadian French text.{mlang}{mlang en}Some English text.{mlang}{mlang es}Some Spanish text.{mlang}{mlang en_kids}Some English for Kids text.{mlang}{mlang fr}Some French text.{mlang}',
+            '{mlang fr_ca}Some Canadian French text.{mlang}'
+            . '{mlang en}Some English text.{mlang}'
+            . '{mlang es}Some Spanish text.{mlang}'
+            . '{mlang en_kids}Some English for Kids text.{mlang}'
+            . '{mlang fr}Some French text.{mlang}',
             'fr_ca',
             [
                 'fr_ca' => 'fr',
@@ -284,7 +288,11 @@ function multilang2_actual_test_cases(): array {
         ],
         [
             'Some Canadian French text.',
-            '{mlang fr_ca}Some Canadian French text.{mlang}{mlang en}Some English text.{mlang}{mlang es}Some Spanish text.{mlang}{mlang en_kids}Some English for Kids text.{mlang}{mlang fr}Some French text.{mlang}',
+            '{mlang fr_ca}Some Canadian French text.{mlang}'
+            . '{mlang en}Some English text.{mlang}'
+            . '{mlang es}Some Spanish text.{mlang}'
+            . '{mlang en_kids}Some English for Kids text.{mlang}'
+            . '{mlang fr}Some French text.{mlang}',
             'fr_ca',
             [
                 'fr_ca' => 'fr',
@@ -294,7 +302,11 @@ function multilang2_actual_test_cases(): array {
         ],
         [
             'Some English for Kids text.',
-            '{mlang fr_ca}Some Canadian French text.{mlang}{mlang en}Some English text.{mlang}{mlang es}Some Spanish text.{mlang}{mlang en_kids}Some English for Kids text.{mlang}{mlang fr}Some French text.{mlang}',
+            '{mlang fr_ca}Some Canadian French text.{mlang}'
+            . '{mlang en}Some English text.{mlang}'
+            . '{mlang es}Some Spanish text.{mlang}'
+            . '{mlang en_kids}Some English for Kids text.{mlang}'
+            . '{mlang fr}Some French text.{mlang}',
             'en_kids',
             [
                 'fr_ca' => 'fr',
@@ -304,7 +316,11 @@ function multilang2_actual_test_cases(): array {
         ],
         [
             'Some English text.Some English for Kids text.',
-            '{mlang fr_ca}Some Canadian French text.{mlang}{mlang en}Some English text.{mlang}{mlang es}Some Spanish text.{mlang}{mlang en_kids}Some English for Kids text.{mlang}{mlang fr}Some French text.{mlang}',
+            '{mlang fr_ca}Some Canadian French text.{mlang}'
+            . '{mlang en}Some English text.{mlang}'
+            . '{mlang es}Some Spanish text.{mlang}'
+            . '{mlang en_kids}Some English for Kids text.{mlang}'
+            . '{mlang fr}Some French text.{mlang}',
             'en_kids',
             [
                 'fr_ca' => 'fr',
