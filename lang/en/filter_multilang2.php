@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['filtername'] = 'Multi-Language Content (v2)';
+$string['parentlangalwaysen'] = 'Always use parent languages, including \'en\'.';
 $string['parentlangbehaviour'] = 'Parent languages behaviour';
 $string['parentlangbehaviour_desc'] = '<p>When the filter checks whether
 a language block has to be displayed or not, it tries to match the
@@ -59,7 +60,6 @@ languages are never used to match the current language used by the
 user displaying the content. The filter restricts itself to the
 languages specified in the language block.</li> </ul>';
 $string['parentlangdefault'] = 'Always use parent languages, excluding \'en\' (traditional behaviour).';
-$string['parentlangalwaysen'] = 'Always use parent languages, including \'en\'.';
 $string['parentlangnever'] = 'Never use parent languages.';
 $string['pluginname'] = 'Multi-Language Content (v2) Filter';
 $string['privacy:metadata'] = 'The Multi-Language Content (v2) Filter plugin does not store any personal data.';

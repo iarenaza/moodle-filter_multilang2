@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['filtername'] = 'Eduki eleaniztuna (2.bertsioa)';
+$string['parentlangalwaysen'] = 'Beti erabili guraso-hizkuntzak, \'en\' barne.';
 $string['parentlangbehaviour'] = 'guraso-hizkuntzen portaera';
 $string['parentlangbehaviour_desc'] = '<p>Iragazkiak hizkuntza-bloke
 bat bistaratu behar den ala ez egiaztatzen duenean, blokean
@@ -62,7 +63,6 @@ erabiltzailea erabiltzen ari den hizkuntzarekin bat egiteko. Iragazkia
 hizkuntza-blokean zehaztutako hizkuntzetara mugatzen da.</li>
 </ul>';
 $string['parentlangdefault'] = 'Beti erabili guraso-hizkuntzak, \'en\' izan ezik (portaera tradizionala).';
-$string['parentlangalwaysen'] = 'Beti erabili guraso-hizkuntzak, \'en\' barne.';
 $string['parentlangnever'] = 'Ez erabili inoiz guraso-hizkuntzak.';
 $string['pluginname'] = 'Eduki eleaniztunaren Iragazkia (2.bertsioa)';
 $string['privacy:metadata'] = 'Eduki eleaniztunaren Iragazkia (2.bertsioa) pluginak ez du datu pertsonalik biltzen.';

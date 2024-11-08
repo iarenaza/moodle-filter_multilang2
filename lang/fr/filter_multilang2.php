@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['filtername'] = 'Contenu Multilingue (v2)';
+$string['parentlangalwaysen'] = 'Utiliser toujours les langues parentes, y compris \'en\'.';
 $string['parentlangbehaviour'] = 'Comportement des langues parentes.';
 $string['parentlangbehaviour_desc'] = '<p>Lorsque le filtre vérifie
 si un bloc de langue doit être affiché ou non, il essaie de faire
@@ -65,7 +66,6 @@ affichant le contenu. Le filtre se limite aux langues spécifiées
 dans le bloc de langue.</li>
 </ul>';
 $string['parentlangdefault'] = 'Utiliser toujours les langues parentes, à l\'exclusion de \'en\' (comportement traditionnel).';
-$string['parentlangalwaysen'] = 'Utiliser toujours les langues parentes, y compris \'en\'.';
 $string['parentlangnever'] = 'N\'utiliser jamais les langues parentes.';
 $string['pluginname'] = 'Filtre de Contenu Multilingue (v2)';
 $string['privacy:metadata'] = 'Le plugin Filtre Contenu Multilingue (v2) n’enregistre aucune donnée personnelle.';
