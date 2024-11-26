@@ -68,4 +68,4 @@ dans le bloc de langue.</li>
 $string['parentlangdefault'] = 'Utiliser toujours les langues parentes, à l\'exclusion de \'en\' (comportement traditionnel).';
 $string['parentlangnever'] = 'N\'utiliser jamais les langues parentes.';
 $string['pluginname'] = 'Filtre de Contenu Multilingue (v2)';
-$string['privacy:metadata'] = 'Le plugin Filtre Contenu Multilingue (v2) n’enregistre aucune donnée personnelle.';
+$string['privacy:metadata'] = 'Le plugin Filtre Contenu Multilingue (v2) n\'enregistre aucune donnée personnelle.';
