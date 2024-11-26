@@ -28,37 +28,72 @@ defined('MOODLE_INTERNAL') || die();
 $string['filtername'] = 'Multi-Language Content (v2)';
 $string['parentlangalwaysen'] = 'Always use parent languages, including \'en\'.';
 $string['parentlangbehaviour'] = 'Parent languages behaviour';
-$string['parentlangbehaviour_desc'] = '<p>When the filter checks whether
-a language block has to be displayed or not, it tries to match the
-languages specified in the block with the current language used by the
-user displaying the content. This matching can be done in three
-different ways, that the filter calls <em>parent languages
-behaviour</em>:</p>
-<ul>
-<li><b>Always use parent languages, excluding \'en\'</b>. <em>This is
-the traditional behaviour of the plugin</em>, and is the default value
-for the setting. When this behaviour is selected, the filter uses both
-the languages specified in the language block, and all the parents of
-those languages (recursively to the top), to match the current
-language used by the user. But the English language (\'en\') is never
-considered a parent language in this case, and is removed from the
-parent list. E.g., a language block that specifies \'en_kids\' in the
-language list will not be displayed if the current language used by
-the user displaying the content is \'en\'. Notice that the English
-language is still used by the filter if it is <em>explicitly</em>
-specified in the language blocks (e.g., <small><tt>{mlang en}This text will
-be shown when the current language used by the user displaying the
-content is \'en\'{mlang})</tt></small>.</li>
-<li><b>Always use parent languages, including \'en\'</b>. Which works
-as "Always use parent languages, excluding \'en\'", but does not
-remove the English (\'en\') language from the parent languages
-list. E.g., a language block that specifies \'en_kids\' in the
-language list <em>will be</em> displayed if the current language used
-by the user displaying the content is \'en\'.</li>
-<li><b>Never use parent languages</b>. As the name implies, parent
-languages are never used to match the current language used by the
-user displaying the content. The filter restricts itself to the
-languages specified in the language block.</li> </ul>';
+$string['parentlangbehaviour_desc'] = '
+<p>
+  The filter determines whether a language block should be displayed
+  based on the languages specified in the block and the current
+  language being used by the user ("the user\'s current
+  language"). This matching process can follow three different
+  approaches, known as "<em>parent languages behaviour</em>":
+</p>
+<ol>
+  <li>
+    <b>Always use parent languages, excluding \'en\'.</b>
+    <ul>
+      <li>
+        This is the default setting. The filter considers the
+        languages listed in the language block\'s <code>{mlang
+        ...}</code> tag, and all of their parent languages (up to,
+        but not including, the root <code>en</code> language).
+      </li>
+      <li>
+        Example: If a language block specifies <code>{mlang
+        en_us_k12}</code>, it will only display if the user\'s
+        current language is <code>en_us_k12</code>
+        or <code>en_us</code> but not <code>en</code>.
+      </li>
+      <li>
+        Note: English can still be used explicitly in the language
+        block. For example, <code>{mlang en}This text will be shown
+        when the user’s current language is \'en\'.{mlang}</code>
+        will display the content when the user\'s current language
+        is <code>en</code>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Always use parent languages, including \'en\'.</b>
+    <ul>
+      <li>
+        This setting works like the previous one, but includes the
+        root <code>en</code> as a valid parent language.
+      </li>
+      <li>
+        Example: If a language block specifies <code>{mlang
+        en}</code>, it will display if the user\'s current language
+        is either <code>en_us_k12</code>,
+        <code>en_us</code> or <code>en</code>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <b>Never use parent languages.</b>
+    <ul>
+      <li>
+        As the name suggests, no parent languages are used. The
+        filter only matches the languages explicitly listed in the
+        language block, without considering any parent languages.
+      </li>
+      <li>
+        Example: If a language block specifies <code>{mlang
+        en_us_k12}</code>, it will only display if the user\'s
+        current language is <code>en_us_k12</code>,
+        not <code>en_us</code>
+        or <code>en</code>.
+      </li>
+    </ul>
+  </li>
+</ol>';
 $string['parentlangdefault'] = 'Always use parent languages, excluding \'en\' (traditional behaviour).';
 $string['parentlangnever'] = 'Never use parent languages.';
 $string['pluginname'] = 'Multi-Language Content (v2) Filter';

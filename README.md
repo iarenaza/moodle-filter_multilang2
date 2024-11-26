@@ -35,16 +35,20 @@ CI](https://github.com/iarenaza/moodle-filter_multilang2/workflows/Moodle%20plug
 - Text outside of "language blocks" will always be shown.
 
 ## Configurable parent languages behaviour ##
-
 Since version 2.0.5, the plugin offers a setting to configure how the filter will behave, with respect to parent languages, when processing a language block.
 
-As described in the previous section, when the filter checks whether a language block has to be displayed or not, it tries to match the languages specified in the block with the current language used by the user displaying the content. This matching can be done in three different ways, that the filter calls _parent languages behaviour_:
+The filter determines whether a language block should be displayed based on the languages specified in the block and the current language being used by the user ("the user's current language"). This matching process can follow three different approaches, known as "_parent languages behaviour_":
 
-* **Always use parent languages, excluding 'en'**. _This is the traditional behaviour of the plugin_, and is the default value for the setting. When this behaviour is selected, the filter uses both the languages specified in the language block, and all the parents of those languages (recursively to the top), to match the current language used by the user. But the English language ('en') is never considered a parent language in this case, and is removed from the parent list. E.g., a language block that specifies 'en_kids' in the language list _will not_ be displayed if the current language used by the user displaying the content is 'en'. Notice that the English language is still used by the filter if it is _explicitly_ specified in the language blocks (e.g., `{mlang en}This text will be shown when the current language used by the user displaying the content is 'en'{mlang}`).
-
-* **Always use parent languages, including 'en'**. Which works as **Always use parent languages, excluding 'en'**, but does not remove the English ('en') language from the parent languages list. E.g., a language block that specifies 'en_kids' in the language list _will be_ displayed if the current language used by the user displaying the content is 'en'.
-
-* **Never use parent languages**. As the name implies, parent languages are never used to match the current language used by the user displaying the content. The filter restricts itself to the languages specified in the language block.
+1. **Always use parent languages, excluding 'en'.**
+  * This is the default setting. The filter considers the languages listed in the language block's {mlang} tag, and all of their parent languages (up to but not including the root 'en' language).
+  * Example: If a language block specifies '{mlang en_us_k12}', it will only display if the user's current language is 'en_us_k12' or 'en_us' but not 'en'.
+  * Note: English can still be used explicitly in the language block. For example, {mlang en}This text will be shown when the user’s current language is 'en'.{mlang} will display the content when the user's current language is 'en'.
+1. **Always use parent languages, including 'en'.**
+  * This setting works like the previous one but includes the root 'en' as a valid parent language.
+  * Example: If a language block specifies '{mlang en}', it will display if the user's current language is either 'en_us_k12', 'en_us' or 'en'.
+1. **Never use parent languages.**
+  * As the name suggests, no parent languages are used. The filter only matches the languages explicitly listed in the language block, without considering any parent languages.
+  * Example: If a language block specifies '{mlang en_us_k12}', it will only display if the user's current language is 'en_us_k12', not 'en_us' or 'en'.
 
 ## Definition of "language block" ##
 Is any text (including spaces, tabs, linefeeds or return characters) placed between '{mlang XX}' and '{mlang}' markers. You can not only put text inside "language block", but also images, videos or external embedded content. For example, this is a valid "language block":
