@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 2024.11.27
+
 ### Added
 
-- Added a setting to configure the parent languages behaviour (see README.md for additional details on the setting.
+- [#42] [#25] Added a setting to configure the parent languages behaviour (see README.md for additional details on the setting).
 
 ## [2.0.4] - 2024.10.18
 
