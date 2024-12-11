@@ -39,7 +39,7 @@ $string['parentlangbehaviour_desc'] = '
 </p>
 <ol>
   <li>
-    <b>Usar idiomas padre siempre, excluído \'en\'</b>.
+    <b>Usar idiomas padre siempre, excluído \'en\'.</b>
     <ul>
       <li>
         Este es el valor predeterminado para el ajuste. El filtro
