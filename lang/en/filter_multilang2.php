@@ -70,8 +70,8 @@ $string['parentlangbehaviour_desc'] = '
       </li>
       <li>
         Example: If a language block specifies <code>{mlang
-        en}</code>, it will display if the user\'s current language
-        is either <code>en_us_k12</code>,
+        en_us_k12}</code>, it will display if the user\'s current
+        language is either <code>en_us_k12</code>,
         <code>en_us</code> or <code>en</code>.
       </li>
     </ul>

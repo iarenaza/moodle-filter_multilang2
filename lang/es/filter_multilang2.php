@@ -73,8 +73,8 @@ $string['parentlangbehaviour_desc'] = '
       </li>
       <li>
         Ejemplo: si un bloque de idioma especifica <code>{mlang
-        en}...{mlang}</code>, dicho bloque se visualizará tanto si el
-        idioma del usuario es <code>en_us_k12</code>, como si
+        en_us_k12}...{mlang}</code>, dicho bloque se visualizará tanto
+        si el idioma del usuario es <code>en_us_k12</code>, como si
         es <code>en_us</code>, o si es <code>en</code>.
       </li>
     </ul>
