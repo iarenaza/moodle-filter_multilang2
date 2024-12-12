@@ -83,10 +83,11 @@ $string['parentlangbehaviour_desc'] = '
     <b>Ez erabili inoiz guraso-hizkuntzak.</b>
     <ul>
       <li>
-        Izenak iradokitzen duen moduan, guraso-hizkuntzak ez dira 
-        inoiz kontuan hartzen. Iragazkiak soilik hizkuntza-blokean 
-        esplizituki erabiltzen diren hizkuntzak hartuko ditu kontuan,
-        inongo guraso-hizkuntzarik kontuan hartu gabe.
+        Izenak iradokitzen duen moduan, aukera honekin guraso-hizkuntzak 
+        ez dira inoiz kontuan hartzen. Iragazkiak soilik 
+        hizkuntza-blokean esplizituki erabiltzen diren hizkuntzak 
+        hartuko ditu kontuan, inongo guraso-hizkuntzarik kontuan hartu 
+        gabe.
       </li>
       <li>
         Adibidez: hizkuntza-bloke batek <code>{mlang en_us_k12}</code> 
