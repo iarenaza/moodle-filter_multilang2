@@ -56,7 +56,7 @@ $string['parentlangbehaviour_desc'] = '
       <li>
         Oharra: Ingelesa hizkuntza-blokeetan esplizituki ere erabili
         daiteke. Esaterako <code>{mlang en}This text will be shown
-        when the user’s current language is 'en'.{mlang}</code>
+        when the user’s current language is \'en\'.{mlang}</code>
         hizkuntza-blokea erakutsi egingo da erabiltzailearen uneko
         hizkuntza <code>en</code> denean.
       </li>
