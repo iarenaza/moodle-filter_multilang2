@@ -30,68 +30,66 @@ $string['parentlangalwaysen'] = 'Beti erabili guraso-hizkuntzak, \'en\' barne.';
 $string['parentlangbehaviour'] = 'Guraso-hizkuntzen portaera';
 $string['parentlangbehaviour_desc'] = '
 <p>
-  Iragazkia hizkuntza-bloke bat bistaratu behar den ala ez
-  erabakitzeko blokean zehaztutako hizkuntzetan eta erabiltzailea
-  erabiltzen ari den hizkuntzan (hemendik aurrera, "erabiltzailearen
-  hizkuntza") oinarritzen da. Bat-etortze hau hiru era ezberdinetan
-  egin daiteke. Iragazkiak hiru era horiei <em>guraso-hizkuntzen
-  portaera</em> deitzen die:
+Iragazkiak hizkuntza-bloke bat erakutsi behar den blokean zehaztutako 
+hizkuntzaren eta erabiltzailea une horretan erabiltzen den hizkuntzaren 
+("erabiltzailearen une horretako hizkuntza") arabera erabakitzen du. 
+Bat-etortze prozesu hori "<em>guraso-hizkuntzen portaera</em>" 
+deitutako hiru modutan egin daiteke:
 </p>
 <ol>
   <li>
     <b>Beti erabili guraso-hizkuntzak, \'en\' izan ezik.</b>
     <ul>
       <li>
-        <em>Hau da pluginare portaera tradizionala</em>. Iragazkiak
-        hizkuntza-blokean zehaztutako hizkuntzak <code>{mlang...}</code>,
-        eta hizkuntza horien guraso-hizkuntza guztiak (erro
-        hizkuntzara arte, <code>en</code> sartu gabe), erabiltzen
-        ditu.
+        <em>Hau da pluginaren portaera tradizionala</em> eta lehenetsitako 
+        aukera. Iragazkiak <code>{mlang...}</code> etiketa arteko 
+        hizkuntza-blokean zehaztutako hizkuntzak eta euren guraso-hizkuntza 
+        guztiak hartuko ditu kontuan, jatorrizko <code>en</code> hizkuntza 
+        izan ezik.
       </li>
       <li>
-        Adibidez, hizkuntza-bloke batek <code>{mlang en_us_k12}...
-        {mlang}</code> zehazten badu, hizkuntza-bloke hori bakarrik
-        bistaratuko da erabiltzailearen hizkuntza <code>en_us_k12</code>
-        edo <code>en_us</code> bada, baina ez <code>en</code> bada.
+        Adibidez: hizkuntza-bloke batek <code>{mlang en_us_k12}</code> 
+        zehazten badu, soilik erakutsiko da erabiltzailearen uneko hizkuntza 
+        <code>en_us_k12</code> ala <code>en_us</code> bada, baina ez hizkuntza 
+        <code>en</code> bada.
+      </li>
       <li>
-        Oharra: Ingeles hizkuntza (<code>en</code>) erabiltzea beti
-        posible da, baldin eta hura hizkuntza blokean esplizituki
-        aipatzen bada. Adibidez, hizkuntza-bloke batek <code>{mlang
-        en}This text will be shown when the user’s current language is
-        \'en\'.{mlang}</code> zehazten badu, hizkuntza-bloke hori
-        bistaratuko da erabiltzailearen hizkuntza <code>en</code>
-        denean.</li>
+        Oharra: Ingelesa hizkuntza-blokeetan esplizituki ere erabili daiteke. 
+        Esaterako <code>{mlang en}This text will be shown when the user’s 
+        current language is 'en'.{mlang}</code> hizkuntza-blokea erakutsi 
+        egingo da erabiltzailearen uneko hizkuntza <code>en</code> denean.
+      </li>
     </ul>
   </li>
   <li>
-    <b>Beti erabili guraso-hizkuntzak, \'en\' barne </b>
+    <b>Beti erabili guraso-hizkuntzak, \'en\' barne.</b>
     <ul>
       <li>
-        Ezarpen honek aurrekoaren bezala funtzionatzen du, baina
-        baliozko guraso-hizkuntza gisa <code>en</code> erroa barne
-        hartzen du.
+        Aukera honek "Beti erabili guraso-hizkuntzak, \'en\' izan ezik" 
+        ezarpena bezala funtzionatzen du, baina jatorrizko <code>en</code> 
+        hizkuntza baliozko guraso-hizkuntza gisa hartuko da.
       </li>
       <li>
-        Adibidez, hizkuntza-bloke batek <code>{mlang en_us_k12}...
-        {mlang}</code> zehazten badu, hizkuntza-bloke hori bistaratuko
-        da erabiltzailearen hizkuntza <code>en_us_k12</code>,
-        <code>en_us</code> edo <code>en</code> bada.
+        Adibidez: hizkuntza-bloke batek <code>{mlang en}</code> erabiltzen 
+        badu, blokea erakutsi egingo da erabiltzailearen une hizkuntza 
+        <code>en_us_k12</code>, <code>en_us</code> ala <code>en</code> denean.
+      </li>
     </ul>
   </li>
   <li>
     <b>Ez erabili inoiz guraso-hizkuntzak.</b>
     <ul>
       <li>
-        Izenak dioen bezala, guraso-hizkuntzak ez dira inoiz
-        erabiliko. Iragazkia hizkuntza-blokean esplizituki zehaztutako
-        hizkuntzetara mugatzen da, eta ez du inoiz guraso-hizkuntzarik
-        kontuan hartzen.
+        Izenak iradokitzen duen moduan, guraso-hizkuntzak ez dira inoiz 
+        kontuan hartzen. Iragazkiak soilik hizkuntza-blokean esplizituki 
+        erabiltzen diren hizkuntzak hartuko ditu kontuan, inongo 
+        guraso-hizkuntzarik kontuan hartu gabe.
       </li>
       <li>
-        Adibidez, hizkuntza-bloke batek <code>{mlang en_us_k12}...
-        {mlang}</code> zehazten badu, hizkuntza-bloke hori bakarrik
-        bistaratuko da erabiltzailearen hizkuntza <code>en_us_k12</code>
-        bada, baina ez <code>en_us</code> edo <code>en</code> bada.
+        Adibidez: hizkuntza-bloke batek <code>{mlang en_us_k12}</code> 
+        zehazten badu, soilik erakutsiko da erabiltzailearen uneko hizkuntza 
+        <code>en_us_k12</code> denean, eta ez <code>en_us</code> ala 
+        <code>en</code> bada.
       </li>
     </ul>
   </li>
