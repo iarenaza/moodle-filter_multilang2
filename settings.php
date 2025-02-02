@@ -36,4 +36,9 @@ if ($ADMIN->fulltree) {
         $item->set_updatedcallback('\filter_multilang2\text_filter::reset_parentcache');
         $settings->add($item);
     }
+
+    $settings->add(new admin_setting_configcheckbox('filter_multilang2/clientfilter',
+                                                    get_string('clientfilter', 'filter_multilang2'),
+                                                    get_string('clientfilter_desc', 'filter_multilang2'),
+                                                    0));
 }

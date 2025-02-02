@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['clientfilter'] = 'Ajax filter';
+$string['clientfilter_desc'] = 'This option allow to filter the content of the page using Javascript and Ajax request after the page get loaded for non-formatted content.';
 $string['filtername'] = 'Multi-Language Content (v2)';
 $string['parentlangalwaysen'] = 'Always use parent languages, including \'en\'.';
 $string['parentlangbehaviour'] = 'Parent languages behaviour';
