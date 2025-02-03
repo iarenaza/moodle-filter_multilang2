@@ -15,23 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * External functions and service declaration for Multi-Language Content (v2)
- *
- * Documentation: {@link https://moodledev.io/docs/apis/subsystems/external/description}
+ * Callback implementations for Multi-Language Content (v2)
  *
  * @package    filter_multilang2
- * @category   webservice
  * @copyright  2025 Mohammad Farouk <phun.for.physics@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
-$functions = [
-    'filter_multilang2' => [
-        'classname'  => filter_multilang2\external\filter::class,
-        'methodname' => 'filter_content',
-        'type'       => 'read',
-        'ajax'       => true,
-    ],
-];
+/**
+ * Legacy callbacks for < 4.5
+ * @return string
+ */
+function filter_multilang2_before_footer() {
+    global $PAGE;
+    $enabled = filter_is_enabled('multilang2') && !empty(get_config('filter_multilang2', 'clientfilter'));
+    if ($enabled) {
+        $PAGE->requires->js_call_amd('filter_multilang2/filter', 'init');
+    }
+    return '';
+}
