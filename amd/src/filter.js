@@ -27,12 +27,71 @@ import {eventTypes, notifyFilterContentRenderingComplete} from 'core_filters/eve
 let elements = [];
 let data = [];
 let onRequest = false;
+let queue = [];
+let retryInterval;
+
+/**
+ * Queue filter event.
+ * @param {CustomEvent} event
+ */
+function queueFilter(event = null) {
+    queue.push({
+        event: event,
+        done: false,
+    });
+    runInterval();
+}
+
+/**
+ * Rerun the interval to check for new data.
+ */
+function runInterval() {
+    clearInterval(retryInterval);
+    retryInterval = setInterval(processQueue, 500);
+}
+
+/**
+ * Process the queue of filter requests.
+ * @returns {void}
+ */
+function processQueue() {
+    clearInterval(retryInterval);
+    if (queue.length == 0) {
+        return;
+    }
+
+    if (onRequest) {
+        runInterval();
+        return;
+    }
+
+    let item;
+    for (let i = 0; i < queue.length; i++) {
+        item = queue[i];
+        if (item.done) {
+            queue.splice(i, 1);
+            continue;
+        }
+
+        if (item.event) {
+            break;
+        }
+
+        item = null;
+    }
+    if (item) {
+        runInterval();
+        filter(item.event);
+    }
+}
+
 /**
  * Process filtering.
  * @param {CustomEvent} event
  */
 async function filter(event) {
     if (onRequest) {
+        queueFilter(event);
         return;
     }
 
@@ -68,6 +127,7 @@ async function filter(event) {
             args: {
                 contextid: contextid,
                 data: data,
+                loginrequired: false,
             }
         }
     ]);

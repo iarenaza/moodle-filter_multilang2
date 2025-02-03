@@ -29,9 +29,10 @@ defined('MOODLE_INTERNAL') || die();
 
 $functions = [
     'filter_multilang2' => [
-        'classname'  => filter_multilang2\external\filter::class,
-        'methodname' => 'filter_content',
-        'type'       => 'read',
-        'ajax'       => true,
+        'classname'     => filter_multilang2\external\filter::class,
+        'methodname'    => 'filter_content',
+        'type'          => 'read',
+        'ajax'          => true,
+        'loginrequired' => false,
     ],
 ];
