@@ -36,8 +36,6 @@ async function filter(event) {
         return;
     }
 
-    // eslint-disable-next-line no-console
-    console.log(event);
     onRequest = true;
     let contextid = M.cfg.contextid;
     let selector;
