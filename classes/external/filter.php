@@ -40,7 +40,7 @@ class filter extends external_api {
             'data' => new external_multiple_structure(
                 new external_value(PARAM_RAW, 'somedata to be filtered')
             ),
-            'contextid' => new external_value(PARAM_INT),
+            'contextid' => new external_value(PARAM_INT, 'Page context id'),
         ]);
     }
     /**
@@ -50,16 +50,21 @@ class filter extends external_api {
      * @return string[]
      */
     public static function filter_content($data, $contextid): array {
+        global $PAGE;
         $params = self::validate_parameters(self::filter_content_parameters(), compact('data', 'contextid'));
+
         $context = context::instance_by_id($contextid, MUST_EXIST);
-        self::validate_context($context);
+        $PAGE->reset_theme_and_output();
+        $PAGE->set_context($context);
+
         $filter = new text_filter();
-        $data = array_map(function($text)use($filter): string {
+        $data = array_map(function($text) use($filter): string {
             if (clean_param($text, PARAM_TEXT) != $text) {
                 return $text;
             }
             return $filter->filter($text);
         }, $params['data']);
+
         return $data;
     }
     /**
@@ -69,6 +74,6 @@ class filter extends external_api {
     public static function filter_content_returns(): external_multiple_structure {
         return new external_multiple_structure(
             new external_value(PARAM_TEXT, 'filtered data')
-            );
+        );
     }
 }
