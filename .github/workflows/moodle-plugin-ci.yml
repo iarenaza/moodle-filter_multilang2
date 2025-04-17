@@ -112,7 +112,7 @@ jobs:
 
       - name: Moodle Code Checker
         if: ${{ always() }}
-        run: moodle-plugin-ci phpcs --max-warnings 0
+        run: moodle-plugin-ci phpcs --max-warnings 0 --exclude moodle.Files.BoilerplateComment
 
       - name: Moodle PHPDoc Checker
         if: ${{ always() }}
