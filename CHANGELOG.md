@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5.2] - 2025.04.17
+
+### Changed
+
 - Updated the copyright notices to remove Moodle, and use filter_multilang2 instead. See https://moodle.org/mod/forum/discuss.php?d=467516 for the rationale.
 - Ignore phpcs codesniff that check for standard Moodle copyright boilerplate.
 
@@ -14,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- [#56] Updated Basque translations for latest changes (I forgot to do it in 2.00.5)
+- [#56] Updated Basque translations for latest changes (I forgot to do it in 2.0.5)
 
 ## [2.0.5] - 2024.11.27
 
