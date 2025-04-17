@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Updated the copyright notices to remove Moodle, and use filter_multilang2 instead. See https://moodle.org/mod/forum/discuss.php?d=467516 for the rationale.
+
 ## [2.0.5.1] - 2024.12.12
 
 ### Fixed
