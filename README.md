@@ -2,8 +2,7 @@ moodle-filter_multilang2
 ========================
 
 [![Latest Release](https://img.shields.io/github/v/release/iarenaza/moodle-filter_multilang2?sort=semver&color=orange)](https://github.com/iarenaza/moodle-filter_multilang2/releases)
-[![Moodle Plugin
-CI](https://github.com/iarenaza/moodle-filter_multilang2/workflows/Moodle%20plugin%20CI/badge.svg?branch=master)](https://github.com/iarenaza/moodle-filter_multilang2/actions?query=workflow%3A%22Moodle+plugin+CI%22+branch%3Amaster)
+[![Moodle plugin CI](https://github.com/iarenaza/moodle-filter_multilang2/actions/workflows/moodle-plugin-ci.yml/badge.svg?branch=master)](https://github.com/iarenaza/moodle-filter_multilang2/actions/workflows/moodle-plugin-ci.yml)
 
 # To Install it manually #
 - Unzip the plugin in the moodle .../filter/ directory.
