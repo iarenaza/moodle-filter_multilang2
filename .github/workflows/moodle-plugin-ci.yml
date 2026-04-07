@@ -3,7 +3,9 @@
 
 name: Moodle plugin CI
 
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
 
 # Give just enough permissions to fetch code (actions/checkout)
 permissions:
@@ -50,7 +52,9 @@ jobs:
           - '8.2'
           - '8.1'
           - '8.0'
-        database: ['mariadb', 'pgsql']
+        database:
+          - 'mariadb'
+          - 'pgsql'
         exclude:
           # Moodle 5.0 doesn't support PHP 8.0 or PHP 8.1, so exclude this combination.
           - moodle-branch: 'MOODLE_500_STABLE'
