@@ -28,10 +28,13 @@ if ($ADMIN->fulltree) {
     $options = ['default' => new lang_string('parentlangdefault', 'filter_multilang2'),
                 'include_en' => new lang_string('parentlangalwaysen', 'filter_multilang2'),
                 'never' => new lang_string('parentlangnever', 'filter_multilang2')];
-    $items[] = new admin_setting_configselect('filter_multilang2/parentlangbehaviour',
-                                              new lang_string('parentlangbehaviour', 'filter_multilang2'),
-                                              new lang_string('parentlangbehaviour_desc', 'filter_multilang2'),
-                                              'default', $options);
+    $items[] = new admin_setting_configselect(
+        'filter_multilang2/parentlangbehaviour',
+        new lang_string('parentlangbehaviour', 'filter_multilang2'),
+        new lang_string('parentlangbehaviour_desc', 'filter_multilang2'),
+        'default',
+        $options
+    );
     foreach ($items as $item) {
         $item->set_updatedcallback('\filter_multilang2\text_filter::reset_parentcache');
         $settings->add($item);

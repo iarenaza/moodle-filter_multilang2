@@ -42,7 +42,6 @@ use filter_multilang2;
  * @covers     \filter_multilang2
  */
 final class filter_test extends \advanced_testcase {
-
     /**
      * Setup the test framework
      *
@@ -96,8 +95,13 @@ final class filter_test extends \advanced_testcase {
      * @param array $parentlangs Array child lang => parent lang. E.g. ['es_co' => 'es', 'es_mx' => 'es'].
      * @param string $parentlangbehaviour the parent languages behaviour to use.
      */
-    public function test_filtering($expectedoutput, $input, $targetlang, $parentlangs = [],
-                                   $parentlangbehaviour = 'default'): void {
+    public function test_filtering(
+        $expectedoutput,
+        $input,
+        $targetlang,
+        $parentlangs = [],
+        $parentlangbehaviour = 'default'
+    ): void {
         global $SESSION;
         $SESSION->forcelang = $targetlang;
 

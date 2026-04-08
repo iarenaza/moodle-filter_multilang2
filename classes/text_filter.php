@@ -74,7 +74,6 @@ if (class_exists('\core_filters\text_filter')) {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class text_filter extends \filter_multilang2_base_text_filter {
-
     /**
      * @var array Cache of parent language(s) of a given language
      */
@@ -210,8 +209,12 @@ class text_filter extends \filter_multilang2_base_text_filter {
             $parentlangs = self::$stringmanager->get_language_dependencies($currlang);
             if ($this->parentlangbehaviour === 'include_en') {
                 if (count($parentlangs) > 0) {
-                    $realrootisen = self::$stringmanager->get_string('parentlanguage', 'langconfig',
-                                                                     null, $parentlangs[0]);
+                    $realrootisen = self::$stringmanager->get_string(
+                        'parentlanguage',
+                        'langconfig',
+                        null,
+                        $parentlangs[0]
+                    );
                     if ($realrootisen === 'en') {
                         $parentlangs = array_merge(['en'], $parentlangs);
                     }
@@ -231,11 +234,13 @@ class text_filter extends \filter_multilang2_base_text_filter {
                    /isx';
 
         $replacelang = $currlang;
-        $result = preg_replace_callback($search,
-                                        function ($matches) use ($replacelang) {
-                                            return $this->replace_callback($replacelang, $matches);
-                                        },
-                                        $text);
+        $result = preg_replace_callback(
+            $search,
+            function ($matches) use ($replacelang) {
+                return $this->replace_callback($replacelang, $matches);
+            },
+            $text
+        );
         if (is_null($result)) {
             return $text; // Error during regex processing, keep original text.
         }
@@ -244,11 +249,13 @@ class text_filter extends \filter_multilang2_base_text_filter {
         }
 
         $replacelang = 'other';
-        $result = preg_replace_callback($search,
-                                        function ($matches) use ($replacelang) {
-                                            return $this->replace_callback($replacelang, $matches);
-                                        },
-                                        $text);
+        $result = preg_replace_callback(
+            $search,
+            function ($matches) use ($replacelang) {
+                return $this->replace_callback($replacelang, $matches);
+            },
+            $text
+        );
         if (is_null($result)) {
             return $text;
         }
