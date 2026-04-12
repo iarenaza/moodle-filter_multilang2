@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated the language strings for the configuration setting help, and the README file. No code changes were done.
+- Remove help texts for languages other than English. They should be managed by AMOS, not by the plugin itself.
+
 ## [2.0.5.2] - 2025.04.17
 
 ### Changed
