@@ -40,7 +40,7 @@ $string['parentlangbehaviour_desc'] = '
 <p>
   The descriptions below also use the term "language block". A
   language block is any content starting with a <code>{mlang
-  XX}</code> tag (or <code>{mlang XX, YY, ZZ}</code>`, etc.), and
+  XX}</code> tag (or <code>{mlang XX, YY, ZZ}</code>, etc.), and
   ending with a <code>{mlang}</code> tag.
 </p>
 <p>
