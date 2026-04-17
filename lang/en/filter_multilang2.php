@@ -86,7 +86,7 @@ $string['parentlangbehaviour_desc'] = '
       language block like <code>{mlang en_us_kids12}Some content in
       en_us_kids12{mlang}</code> will be displayed. And so will a
       language block like <code>{mlang en_us}Some content in
-      eu_us{mlang}</code>. But a language block like <code>{mlang
+      en_us{mlang}</code>. But a language block like <code>{mlang
       en}Some content in en{mlang}</code> will not be displayed.
       Because \'<code>en</code>\' is excluded from the parent
       languages list, and thus it will neither match the user\'s
