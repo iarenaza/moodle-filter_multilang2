@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5.5] - 2026.04.18
+
+### Fixed
+
+- Small typo in a language string. Credit goes to Iñigo Zendegi (@izendegi)
+
 ## [2.0.5.4] - 2026.04.12
 
 ### Fixed
@@ -80,7 +86,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - [#39] MDL-77525 apply multilang2 before text formatting and cleaning
 
-[UNRELEASED]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.0.5.4...HEAD
+[UNRELEASED]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.0.5.5...HEAD
+[2.0.5.5]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.5.0.4...2.0.5.5
 [2.0.5.4]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.5.0.3...2.0.5.4
 [2.0.5.3]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.5.0.2...2.0.5.3
 [2.0.5.2]: https://github.com/iarenaza/moodle-filter_multilang2/compare/2.5.0.1...2.0.5.2
