@@ -17,7 +17,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:16
+        image: ${{ matrix.database == 'pgsql' && 'postgres:17' || '' }}
         env:
           POSTGRES_USER: 'postgres'
           POSTGRES_HOST_AUTH_METHOD: 'trust'
@@ -26,15 +26,14 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
 
       mariadb:
-        image: mariadb:10
+        image: ${{ matrix.database == 'mariadb' && 'mariadb:11' || '' }}
         env:
-          MYSQL_USER: 'root'
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: '1'
           MYSQL_CHARACTER_SET_SERVER: "utf8mb4"
           MYSQL_COLLATION_SERVER: "utf8mb4_unicode_ci"
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 3
+        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval 10s --health-timeout 5s --health-retries 3
 
     strategy:
       fail-fast: false
@@ -105,16 +104,17 @@ jobs:
 
     steps:
       - name: Checkout repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: plugin
+          persist-credentials: false
 
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: ${{ matrix.extensions }}
-          ini-values: max_input_vars=5000
+          ini-values: max_input_vars=5000, opcache.enable_cli=1
           # If you are not using code coverage, keep "none". Otherwise, use "pcov" (Moodle 3.10 and up) or "xdebug".
           # If you try to use code coverage with "none", it will fallback to phpdbg (which has known problems).
           coverage: none
@@ -135,6 +135,8 @@ jobs:
         env:
           DB: ${{ matrix.database }}
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
+          # Uncomment this to run Behat tests using the Moodle App.
+          # MOODLE_APP: 'true'
 
       - name: PHP Lint
         if: ${{ !cancelled() }}
@@ -177,6 +179,15 @@ jobs:
         id: behat
         if: ${{ !cancelled() }}
         run: moodle-plugin-ci behat --profile chrome --scss-deprecations
+
+      - name: Upload Behat Faildump
+        if: ${{ failure() && steps.behat.outcome == 'failure' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: Behat Faildump (${{ join(matrix.*, ', ') }})
+          path: ${{ github.workspace }}/moodledata/behat_dump
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Mark cancelled jobs as failed.
         if: ${{ cancelled() }}
