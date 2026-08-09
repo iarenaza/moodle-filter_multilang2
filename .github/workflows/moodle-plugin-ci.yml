@@ -40,6 +40,7 @@ jobs:
       fail-fast: false
       matrix:
         moodle-branch:
+          - 'MOODLE_502_STABLE'
           - 'MOODLE_501_STABLE'
           - 'MOODLE_500_STABLE'
           - 'MOODLE_405_STABLE'
@@ -57,6 +58,13 @@ jobs:
           - 'mariadb'
           - 'pgsql'
         exclude:
+          # Moodle 5.2 doesn't support anything below 8.3, exclude these combinations.
+          - moodle-branch: 'MOODLE_502_STABLE'
+            php: '8.2'
+          - moodle-branch: 'MOODLE_502_STABLE'
+            php: '8.1'
+          - moodle-branch: 'MOODLE_502_STABLE'
+            php: '8.0'
           # Moodle 5.1 doesn't support anything below 8.2, exclude these combinations.
           - moodle-branch: 'MOODLE_501_STABLE'
             php: '8.1'
